@@ -36,4 +36,5 @@ jobs:
           git config --local user.name "GPS Updater"
           git add data/gps.json
           git diff --staged --quiet || git commit -m "GPS update: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin master
           git push
