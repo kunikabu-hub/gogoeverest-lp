@@ -922,7 +922,7 @@
           <!-- アイコン本体 -->
           <circle id="markerDot" r="7" fill="#4ade80" filter="url(#glowGreen)"/>
           <!-- 人型アイコン -->
-          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22">🚶</text>
+          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22" transform="scale(-1,1)">🚶</text>
           <!-- 吹き出し -->
           <g id="markerBubble">
             <rect id="bubbleRect" rx="3" fill="rgba(10,10,10,0.9)" stroke="#4ade80" stroke-width="1"/>
@@ -931,8 +931,7 @@
         </g>
         <!-- 山頂フラッグ -->
         <g id="summitFlag">
-          <text text-anchor="middle" font-size="20" dy="0">🏔️</text>
-          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="14" letter-spacing="0.5">SUMMIT</text>
+          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="0" letter-spacing="0.5">SUMMIT</text>
         </g>
       </svg>
     </div>
@@ -1544,7 +1543,7 @@
           // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
           var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true};
           var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
-          var labelY = labelAbove ? wy - 26 : wy + 26;
+          var labelY = labelAbove ? wy - 34 : wy + 34;
           var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
           var numColor  = isCurrent ? 'rgba(74,222,128,0.9)' : (passed ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.7)');
 
@@ -1561,7 +1560,7 @@
           var bgW = wp.shortName.length * 8 + 10;
           var bgH = 28;
           bgRect.setAttribute('x', wx - bgW / 2);
-          bgRect.setAttribute('y', labelAbove ? labelY - 22 : labelY - 14);
+          bgRect.setAttribute('y', labelAbove ? labelY - 22 : labelY - 16);
           bgRect.setAttribute('width', bgW);
           bgRect.setAttribute('height', bgH);
           bgRect.setAttribute('rx', '3');
@@ -1613,11 +1612,13 @@
 
     // 吹き出しテキスト
     var altStr = currentAlt > 0 ? Math.round(currentAlt).toLocaleString() + 'm' : ROUTE[currentWpIdx].alt.toLocaleString() + 'm';
-    var bubbleStr = '池田 今ここ！ ' + altStr;
-    var bw = bubbleStr.length * 7.5 + 20;
-    var bh = 20;
+    var line1 = '池田 今ここ！';
+    var line2 = altStr;
+    var maxLen = Math.max(line1.length, line2.length);
+    var bw = maxLen * 8 + 20;
+    var bh = 34;
     var bx = -bw / 2;
-    var by = -52;
+    var by = -68;
     // 左端はみ出し防止
     if (mx + bx < PAD_L) bx = PAD_L - mx;
     if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
@@ -1629,10 +1630,21 @@
       bubbleRect.setAttribute('height', bh);
     }
     if (bubbleText) {
+      // 改行表示：既存の<text>を使わず、tspanで二行にする
+      while (bubbleText.firstChild) bubbleText.removeChild(bubbleText.firstChild);
       bubbleText.setAttribute('x', bx + bw / 2);
-      bubbleText.setAttribute('y', by + bh / 2 + 4);
+      bubbleText.setAttribute('y', by + 14);
       bubbleText.setAttribute('font-size', '11');
-      bubbleText.textContent = bubbleStr;
+      var tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      tspan1.setAttribute('x', bx + bw / 2);
+      tspan1.setAttribute('dy', '0');
+      tspan1.textContent = line1;
+      var tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      tspan2.setAttribute('x', bx + bw / 2);
+      tspan2.setAttribute('dy', '14');
+      tspan2.textContent = ' ' + line2;
+      bubbleText.appendChild(tspan1);
+      bubbleText.appendChild(tspan2);
     }
 
     // 山頂フラッグ
