@@ -622,6 +622,119 @@
     letter-spacing: 0.1em;
   }
 
+  /* ===== GPS トラッカー ===== */
+  .tracker-section {
+    background: #050505;
+    padding: 5rem 1.5rem;
+    border-top: 1px solid rgba(212,168,67,0.2);
+    border-bottom: 1px solid rgba(212,168,67,0.2);
+  }
+  .tracker-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .tracker-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: #4ade80;
+    margin-bottom: 1rem;
+  }
+  .tracker-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-green 1.5s infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+  }
+  .tracker-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .tracker-stat {
+    text-align: center;
+  }
+  .tracker-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #d4a843;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .tracker-stat-value {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+  .tracker-stat-value.highlight {
+    color: #d4a843;
+  }
+  .tracker-canvas-wrap {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    background: rgba(212,168,67,0.03);
+    border: 1px solid rgba(212,168,67,0.1);
+    padding: 1.5rem 1rem 1rem;
+  }
+  #trackerCanvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .tracker-progress-wrap {
+    max-width: 700px;
+    margin: 0 auto 1rem;
+  }
+  .tracker-progress-bar {
+    height: 3px;
+    background: rgba(212,168,67,0.15);
+    position: relative;
+  }
+  .tracker-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4a843, #f0c060);
+    transition: width 1s ease;
+  }
+  .tracker-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: rgba(240,237,232,0.4);
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+  }
+  .tracker-updated {
+    text-align: center;
+    font-size: 0.65rem;
+    color: rgba(240,237,232,0.3);
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+  }
+  .tracker-status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    border: 1px solid;
+    margin-bottom: 0.5rem;
+  }
+  .tracker-status-badge.ascending { color: #4ade80; border-color: #4ade80; }
+  .tracker-status-badge.trekking { color: #60a5fa; border-color: #60a5fa; }
+  .tracker-status-badge.pre-departure { color: #d4a843; border-color: #d4a843; }
+  .tracker-status-badge.death-zone { color: #f87171; border-color: #f87171; }
+  .tracker-status-badge.summit { color: #ffd700; border-color: #ffd700; }
+
   /* ===== スクロールアニメーション ===== */
   .fade-in {
     opacity: 0;
@@ -674,6 +787,54 @@
     </div>
   </div>
 </div>
+
+<!-- ===== GPS TRACKER ===== -->
+<section id="tracker" class="tracker-section">
+  <div class="section-inner">
+    <div class="tracker-header">
+      <div class="tracker-live-badge">
+        <span class="tracker-live-dot"></span>
+        <span>LIVE TRACKING</span>
+      </div>
+      <p class="section-label">GPS ELEVATION TRACKER</p>
+      <h2 class="section-title">現在地 — エベレスト登頂ルート</h2>
+      <div class="divider"></div>
+      <div id="trackerStatusBadge" class="tracker-status-badge pre-departure">PRE-DEPARTURE</div>
+    </div>
+    <div class="tracker-stats">
+      <div class="tracker-stat">
+        <span class="tracker-stat-label">CURRENT ALTITUDE</span>
+        <span class="tracker-stat-value highlight" id="trackerAlt">-- m</span>
+      </div>
+      <div class="tracker-stat">
+        <span class="tracker-stat-label">SUMMIT</span>
+        <span class="tracker-stat-value">8,849 m</span>
+      </div>
+      <div class="tracker-stat">
+        <span class="tracker-stat-label">PROGRESS</span>
+        <span class="tracker-stat-value" id="trackerPct">-- %</span>
+      </div>
+      <div class="tracker-stat">
+        <span class="tracker-stat-label">CURRENT POINT</span>
+        <span class="tracker-stat-value" id="trackerWaypoint" style="font-size:1rem;">--</span>
+      </div>
+    </div>
+    <div class="tracker-canvas-wrap">
+      <canvas id="trackerCanvas" width="700" height="300"></canvas>
+    </div>
+    <div class="tracker-progress-wrap">
+      <div class="tracker-progress-bar">
+        <div class="tracker-progress-fill" id="trackerProgressFill" style="width:0%"></div>
+      </div>
+      <div class="tracker-progress-labels">
+        <span>ルクラ 2,860m</span>
+        <span id="trackerCurrentLabel">現在地 --m</span>
+        <span>山頂 8,849m</span>
+      </div>
+    </div>
+    <p class="tracker-updated" id="trackerUpdated">最終更新: --</p>
+  </div>
+</section>
 
 <!-- ===== 最新報告 ===== -->
 <section id="reports" class="reports-section">
@@ -1099,6 +1260,170 @@
 </footer>
 
 <script>
+// ===== GPS TRACKER =====
+(function() {
+  const GPS_JSON_URL = 'data/gps.json';
+  const ROUTE = [
+    { name: 'ルクラ出発',       alt: 2860 },
+    { name: 'ナムチェバザール',  alt: 3440 },
+    { name: 'テンボチェ',       alt: 3867 },
+    { name: 'ディンボチェ',     alt: 4410 },
+    { name: 'ロブチェ',         alt: 4940 },
+    { name: 'BC',              alt: 5364 },
+    { name: 'C1',              alt: 5943 },
+    { name: 'C2',              alt: 6400 },
+    { name: 'C3',              alt: 7200 },
+    { name: 'C4',              alt: 7906 },
+    { name: 'サウスサミット',   alt: 8749 },
+    { name: '山頂',            alt: 8849 },
+  ];
+
+  function drawCanvas(canvas, currentAlt) {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    const PAD_L = 55, PAD_R = 20, PAD_T = 20, PAD_B = 50;
+    const chartW = W - PAD_L - PAD_R;
+    const chartH = H - PAD_T - PAD_B;
+    const minAlt = 2000, maxAlt = 9200;
+    function xPos(i) { return PAD_L + (i / (ROUTE.length - 1)) * chartW; }
+    function yPos(alt) { return PAD_T + chartH - ((alt - minAlt) / (maxAlt - minAlt)) * chartH; }
+    // デスゾーンライン
+    const dzY = yPos(8000);
+    ctx.strokeStyle = 'rgba(248,113,113,0.25)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(PAD_L, dzY); ctx.lineTo(W - PAD_R, dzY); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(248,113,113,0.5)';
+    ctx.font = '10px monospace';
+    ctx.fillText('DEATH ZONE 8,000m', PAD_L + 4, dzY - 4);
+    // 標高グリッド
+    ctx.fillStyle = 'rgba(240,237,232,0.25)';
+    ctx.font = '9px monospace';
+    [3000, 4000, 5000, 6000, 7000, 8000, 8849].forEach(function(a) {
+      const y = yPos(a);
+      ctx.fillText(a >= 8849 ? '8,849' : (a/1000).toFixed(0)+'k', 4, y + 3);
+      ctx.strokeStyle = 'rgba(212,168,67,0.06)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD_L, y); ctx.lineTo(W - PAD_R, y); ctx.stroke();
+    });
+    // 通過済みルート塗りつぶし
+    const passedIdxs = ROUTE.reduce(function(arr, wp, i) { if (currentAlt >= wp.alt - 100) arr.push(i); return arr; }, []);
+    if (passedIdxs.length > 1) {
+      ctx.beginPath();
+      ctx.moveTo(xPos(passedIdxs[0]), yPos(ROUTE[passedIdxs[0]].alt));
+      passedIdxs.forEach(function(i) { ctx.lineTo(xPos(i), yPos(ROUTE[i].alt)); });
+      const lastI = passedIdxs[passedIdxs.length - 1];
+      ctx.lineTo(xPos(lastI), H - PAD_B);
+      ctx.lineTo(xPos(passedIdxs[0]), H - PAD_B);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, PAD_T, 0, H - PAD_B);
+      grad.addColorStop(0, 'rgba(212,168,67,0.6)');
+      grad.addColorStop(1, 'rgba(212,168,67,0.05)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+    // 未通過ルート（破線）
+    ctx.strokeStyle = 'rgba(240,237,232,0.2)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ROUTE.forEach(function(wp, i) {
+      if (i === 0) ctx.moveTo(xPos(i), yPos(wp.alt));
+      else ctx.lineTo(xPos(i), yPos(wp.alt));
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // 通過済みルート（金色実線）
+    if (passedIdxs.length > 1) {
+      ctx.strokeStyle = '#d4a843';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      passedIdxs.forEach(function(i, n) {
+        if (n === 0) ctx.moveTo(xPos(i), yPos(ROUTE[i].alt));
+        else ctx.lineTo(xPos(i), yPos(ROUTE[i].alt));
+      });
+      ctx.stroke();
+    }
+    // ウェイポイントドット
+    ROUTE.forEach(function(wp, i) {
+      const x = xPos(i), y = yPos(wp.alt);
+      const passed = currentAlt >= wp.alt - 100;
+      ctx.beginPath();
+      ctx.arc(x, y, passed ? 4 : 3, 0, Math.PI * 2);
+      ctx.fillStyle = passed ? '#d4a843' : 'rgba(240,237,232,0.3)';
+      ctx.fill();
+    });
+    // 現在地マーカー（緑）
+    const curIdx = passedIdxs.length > 0 ? passedIdxs[passedIdxs.length - 1] : -1;
+    if (curIdx >= 0) {
+      const cx = xPos(curIdx), cy = yPos(ROUTE[curIdx].alt);
+      ctx.beginPath(); ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(74,222,128,0.25)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#4ade80'; ctx.fill();
+    }
+    // X軸ラベル
+    var labelIdxs = [0, 5, 7, 9, 11];
+    ctx.fillStyle = 'rgba(240,237,232,0.4)';
+    ctx.font = '9px monospace';
+    ctx.textAlign = 'center';
+    labelIdxs.forEach(function(i) {
+      ctx.fillText(ROUTE[i].name, xPos(i), H - PAD_B + 14);
+    });
+    ctx.textAlign = 'left';
+  }
+
+  function updateTracker(data) {
+    const alt = data.altitude || 0;
+    const pct = data.progress_pct || 0;
+    const rawStatus = (data.status || 'PRE-DEPARTURE');
+    const status = rawStatus.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
+    const wpName = data.current_waypoint_name || '--';
+    const updatedAt = data.updated_at_jst || '--';
+    const altEl = document.getElementById('trackerAlt');
+    if (altEl) altEl.textContent = alt > 0 ? Math.round(alt).toLocaleString() + ' m' : '-- m';
+    const pctEl = document.getElementById('trackerPct');
+    if (pctEl) pctEl.textContent = pct + ' %';
+    const wpEl = document.getElementById('trackerWaypoint');
+    if (wpEl) wpEl.textContent = wpName;
+    const updEl = document.getElementById('trackerUpdated');
+    if (updEl) updEl.textContent = '最終更新: ' + updatedAt + ' (Garmin inReach Mini 2)';
+    const fillEl = document.getElementById('trackerProgressFill');
+    if (fillEl) fillEl.style.width = pct + '%';
+    const curLabelEl = document.getElementById('trackerCurrentLabel');
+    if (curLabelEl) curLabelEl.textContent = '現在地 ' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm';
+    const badge = document.getElementById('trackerStatusBadge');
+    if (badge) {
+      const statusMap = {
+        'pre-departure': { text: 'PRE-DEPARTURE', cls: 'pre-departure' },
+        'trekking':      { text: 'TREKKING', cls: 'trekking' },
+        'ascending':     { text: 'ASCENDING', cls: 'ascending' },
+        'death-zone':    { text: 'DEATH ZONE', cls: 'death-zone' },
+        'summit':        { text: 'SUMMIT 登頂！', cls: 'summit' },
+      };
+      const s = statusMap[status] || statusMap['pre-departure'];
+      badge.textContent = s.text;
+      badge.className = 'tracker-status-badge ' + s.cls;
+    }
+    const canvas = document.getElementById('trackerCanvas');
+    if (canvas) drawCanvas(canvas, alt);
+  }
+
+  function loadGPS() {
+    fetch(GPS_JSON_URL + '?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(data) { updateTracker(data); })
+      .catch(function() {
+        updateTracker({ altitude: 0, progress_pct: 0, status: 'PRE-DEPARTURE', current_waypoint_name: '出発前', updated_at_jst: '--' });
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadGPS);
+  setInterval(loadGPS, 5 * 60 * 1000);
+})();
+
 // スクロールアニメーション
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
