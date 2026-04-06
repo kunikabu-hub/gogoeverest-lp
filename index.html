@@ -1699,7 +1699,18 @@
 
     // 進捗
     var pctEl = document.getElementById('trackerPct');
-    if (pctEl) pctEl.textContent = pct;
+    var pctUnitEl = document.querySelector('#trackerPct + .tracker-stat-unit');
+    if (pctEl) {
+      if (status === 'pre-departure') {
+        pctEl.textContent = '出発前';
+        pctEl.style.fontSize = '1rem';
+        if (pctUnitEl) pctUnitEl.style.display = 'none';
+      } else {
+        pctEl.textContent = pct;
+        pctEl.style.fontSize = '';
+        if (pctUnitEl) pctUnitEl.style.display = '';
+      }
+    }
 
     // 場所名・説明
     var wpEl = document.getElementById('trackerWaypoint');
