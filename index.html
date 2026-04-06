@@ -939,7 +939,7 @@
     <!-- 進捗バー -->
     <div class="tracker-progress-wrap">
       <div class="tracker-progress-header">
-        <span>出発（ルクラ 2,860m）</span>
+        <span>カトマンズ</span>
         <span id="trackerCurrentLabel">現在地 --m</span>
         <span>山頂（8,849m）</span>
       </div>
@@ -1543,14 +1543,14 @@
           // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
           var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true};
           var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
-          var labelY = labelAbove ? wy - 34 : wy + 34;
+          var labelY = labelAbove ? wy - 46 : wy + 34;
           var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
           var numColor  = isCurrent ? 'rgba(74,222,128,0.9)' : (passed ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.7)');
 
           // 垂直線
           var vline = document.createElementNS(ns, 'line');
           vline.setAttribute('x1', wx); vline.setAttribute('y1', wy + (labelAbove ? -6 : 6));
-          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 14 : wy + 14);
+          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 18 : wy + 14);
           vline.setAttribute('stroke', nameColor); vline.setAttribute('stroke-width', '0.5');
           vline.setAttribute('opacity', '0.5');
           wpGroup.appendChild(vline);
@@ -1560,7 +1560,7 @@
           var bgW = wp.shortName.length * 8 + 10;
           var bgH = 28;
           bgRect.setAttribute('x', wx - bgW / 2);
-          bgRect.setAttribute('y', labelAbove ? labelY - 22 : labelY - 16);
+          bgRect.setAttribute('y', labelAbove ? labelY - 20 : labelY - 16);
           bgRect.setAttribute('width', bgW);
           bgRect.setAttribute('height', bgH);
           bgRect.setAttribute('rx', '3');
@@ -1742,9 +1742,12 @@
     var updEl = document.getElementById('trackerUpdated');
     if (updEl) updEl.textContent = '最終更新: ' + updatedAt + ' (Garmin inReach Mini 2)';
 
-    // 進捗バー
+    // 進捗バー（カトマンズ 1,400m 基準で対全体比率を計算）
     var fillEl = document.getElementById('trackerProgressFill');
-    if (fillEl) fillEl.style.width = pct + '%';
+    var BASE_ALT = 1400, SUMMIT_ALT = 8849;
+    var fillPct = status === 'pre-departure' ? 0
+      : Math.min(100, Math.max(0, Math.round((alt - BASE_ALT) / (SUMMIT_ALT - BASE_ALT) * 100)));
+    if (fillEl) fillEl.style.width = fillPct + '%';
     var curLabelEl = document.getElementById('trackerCurrentLabel');
     if (curLabelEl) curLabelEl.textContent = '現在地 ' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm';
 
