@@ -631,7 +631,7 @@
   }
   .tracker-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
   .tracker-live-badge {
     display: inline-flex;
@@ -653,73 +653,33 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(1.3); }
   }
-  .tracker-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  .tracker-stat {
-    text-align: center;
-  }
-  .tracker-stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: #d4a843;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .tracker-stat-value {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: #fff;
-    letter-spacing: 0.05em;
-  }
-  .tracker-stat-value.highlight {
-    color: #d4a843;
-  }
-  .tracker-canvas-wrap {
+  /* マウンテンビジュアライザー */
+  .tracker-mountain-wrap {
     position: relative;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    background: rgba(212,168,67,0.03);
-    border: 1px solid rgba(212,168,67,0.1);
-    padding: 1.5rem 1rem 1rem;
+    max-width: 780px;
+    margin: 0 auto 1.5rem;
   }
-  #trackerCanvas {
+  #trackerMountainSvg {
     width: 100%;
     height: auto;
     display: block;
+    overflow: visible;
   }
-  .tracker-progress-wrap {
-    max-width: 700px;
-    margin: 0 auto 1rem;
-  }
-  .tracker-progress-bar {
-    height: 3px;
-    background: rgba(212,168,67,0.15);
-    position: relative;
-  }
-  .tracker-progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #d4a843, #f0c060);
-    transition: width 1s ease;
-  }
-  .tracker-progress-labels {
+  /* ステータスカード */
+  .tracker-status-card {
+    max-width: 780px;
+    margin: 0 auto 1.5rem;
+    background: rgba(212,168,67,0.05);
+    border: 1px solid rgba(212,168,67,0.2);
+    padding: 1.5rem 2rem;
     display: flex;
-    justify-content: space-between;
-    font-size: 0.65rem;
-    color: rgba(240,237,232,0.4);
-    letter-spacing: 0.1em;
-    margin-top: 0.5rem;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
-  .tracker-updated {
-    text-align: center;
-    font-size: 0.65rem;
-    color: rgba(240,237,232,0.3);
-    letter-spacing: 0.15em;
-    margin-top: 0.5rem;
+  .tracker-status-main {
+    flex: 1;
+    min-width: 200px;
   }
   .tracker-status-badge {
     display: inline-block;
@@ -727,13 +687,103 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     border: 1px solid;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
   .tracker-status-badge.ascending { color: #4ade80; border-color: #4ade80; }
   .tracker-status-badge.trekking { color: #60a5fa; border-color: #60a5fa; }
   .tracker-status-badge.pre-departure { color: #d4a843; border-color: #d4a843; }
   .tracker-status-badge.death-zone { color: #f87171; border-color: #f87171; }
   .tracker-status-badge.summit { color: #ffd700; border-color: #ffd700; }
+  .tracker-location-name {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #f0ede8;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.3rem;
+  }
+  .tracker-location-desc {
+    font-size: 0.75rem;
+    color: rgba(240,237,232,0.5);
+    letter-spacing: 0.1em;
+  }
+  .tracker-stats-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .tracker-stat {
+    text-align: center;
+  }
+  .tracker-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: rgba(212,168,67,0.7);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  .tracker-stat-value {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+  .tracker-stat-value.highlight {
+    color: #d4a843;
+    font-size: 1.6rem;
+  }
+  .tracker-stat-unit {
+    font-size: 0.75rem;
+    color: rgba(240,237,232,0.4);
+    margin-left: 0.2rem;
+  }
+  /* 進捗バー */
+  .tracker-progress-wrap {
+    max-width: 780px;
+    margin: 0 auto 0.8rem;
+  }
+  .tracker-progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(240,237,232,0.4);
+    margin-bottom: 0.4rem;
+  }
+  .tracker-progress-bar {
+    height: 4px;
+    background: rgba(212,168,67,0.12);
+    border-radius: 2px;
+    position: relative;
+  }
+  .tracker-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4a843, #f0c060);
+    border-radius: 2px;
+    transition: width 1.5s ease;
+    position: relative;
+  }
+  .tracker-progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f0c060;
+    box-shadow: 0 0 6px #f0c060;
+  }
+  .tracker-updated {
+    text-align: center;
+    font-size: 0.6rem;
+    color: rgba(240,237,232,0.25);
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+  }
+  /* レガシー非表示 */
+  .tracker-canvas-wrap, #trackerCanvas,
+  .tracker-progress-labels { display: none; }
 
   /* ===== スクロールアニメーション ===== */
   .fade-in {
@@ -796,43 +846,110 @@
         <span class="tracker-live-dot"></span>
         <span>LIVE TRACKING</span>
       </div>
-      <p class="section-label">GPS ELEVATION TRACKER</p>
-      <h2 class="section-title">現在地 — エベレスト登頂ルート</h2>
+      <p class="section-label">GPS TRACKER</p>
+      <h2 class="section-title">池田親生は今、どこにいる？</h2>
       <div class="divider"></div>
-      <div id="trackerStatusBadge" class="tracker-status-badge pre-departure">PRE-DEPARTURE</div>
     </div>
-    <div class="tracker-stats">
-      <div class="tracker-stat">
-        <span class="tracker-stat-label">CURRENT ALTITUDE</span>
-        <span class="tracker-stat-value highlight" id="trackerAlt">-- m</span>
+
+    <!-- ステータスカード -->
+    <div class="tracker-status-card">
+      <div class="tracker-status-main">
+        <div id="trackerStatusBadge" class="tracker-status-badge pre-departure">PRE-DEPARTURE</div>
+        <p class="tracker-location-name" id="trackerWaypoint">カトマンズ滞在中</p>
+        <p class="tracker-location-desc" id="trackerLocationDesc">ルクラへのフライトを待機中</p>
       </div>
-      <div class="tracker-stat">
-        <span class="tracker-stat-label">SUMMIT</span>
-        <span class="tracker-stat-value">8,849 m</span>
-      </div>
-      <div class="tracker-stat">
-        <span class="tracker-stat-label">PROGRESS</span>
-        <span class="tracker-stat-value" id="trackerPct">-- %</span>
-      </div>
-      <div class="tracker-stat">
-        <span class="tracker-stat-label">CURRENT POINT</span>
-        <span class="tracker-stat-value" id="trackerWaypoint" style="font-size:1rem;">--</span>
+      <div class="tracker-stats-grid">
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">現在地標高</span>
+          <span class="tracker-stat-value highlight" id="trackerAlt">--</span>
+          <span class="tracker-stat-unit">m</span>
+        </div>
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">山頂まであと</span>
+          <span class="tracker-stat-value" id="trackerRemain">--</span>
+          <span class="tracker-stat-unit">m</span>
+        </div>
+        <div class="tracker-stat">
+          <span class="tracker-stat-label">進捗</span>
+          <span class="tracker-stat-value" id="trackerPct">--</span>
+          <span class="tracker-stat-unit">%</span>
+        </div>
       </div>
     </div>
-    <div class="tracker-canvas-wrap">
-      <canvas id="trackerCanvas" width="700" height="300"></canvas>
+
+    <!-- マウンテンビジュアライザー -->
+    <div class="tracker-mountain-wrap">
+      <svg id="trackerMountainSvg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- 山型シルエット -->
+        <defs>
+          <linearGradient id="mountainGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(212,168,67,0.25)"/>
+            <stop offset="100%" stop-color="rgba(212,168,67,0.04)"/>
+          </linearGradient>
+          <linearGradient id="routePassedGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#d4a843"/>
+            <stop offset="100%" stop-color="#f0c060"/>
+          </linearGradient>
+          <filter id="glowGreen">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glowGold">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- 山型塗りつぶしエリア -->
+        <path id="mountainFill" fill="url(#mountainGrad)" stroke="none"/>
+        <!-- 山型アウトライン -->
+        <path id="mountainOutline" fill="none" stroke="rgba(240,237,232,0.25)" stroke-width="2"/>
+        <!-- デスゾーンライン -->
+        <line id="deathZoneLine" x1="0" y1="0" x2="0" y2="0" stroke="rgba(248,113,113,0.35)" stroke-width="1" stroke-dasharray="6,4"/>
+        <text id="deathZoneLabel" fill="rgba(248,113,113,0.6)" font-size="9" font-family="monospace" letter-spacing="1"></text>
+        <!-- 通過済みルート -->
+        <path id="routePassed" fill="none" stroke="url(#routePassedGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- 未通過ルート -->
+        <path id="routeAhead" fill="none" stroke="rgba(240,237,232,0.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <!-- ウェイポイントドット・ラベル -->
+        <g id="waypointGroup"></g>
+        <!-- 現在地マーカー -->
+        <g id="currentMarker" visibility="hidden">
+          <!-- パルスリング -->
+          <circle id="markerPulse" r="16" fill="rgba(74,222,128,0.15)">
+            <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <!-- アイコン本体 -->
+          <circle id="markerDot" r="7" fill="#4ade80" filter="url(#glowGreen)"/>
+          <!-- 人型アイコン -->
+          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22">🚶</text>
+          <!-- 吹き出し -->
+          <g id="markerBubble">
+            <rect id="bubbleRect" rx="3" fill="rgba(10,10,10,0.9)" stroke="#4ade80" stroke-width="1"/>
+            <text id="bubbleText" fill="#4ade80" font-size="9" font-family="monospace" letter-spacing="0.5" text-anchor="middle"></text>
+          </g>
+        </g>
+        <!-- 山頂フラッグ -->
+        <g id="summitFlag">
+          <text text-anchor="middle" font-size="20" dy="0">🏔️</text>
+          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="14" letter-spacing="0.5">SUMMIT</text>
+        </g>
+      </svg>
     </div>
+
+    <!-- 進捗バー -->
     <div class="tracker-progress-wrap">
+      <div class="tracker-progress-header">
+        <span>出発（ルクラ 2,860m）</span>
+        <span id="trackerCurrentLabel">現在地 --m</span>
+        <span>山頂（8,849m）</span>
+      </div>
       <div class="tracker-progress-bar">
         <div class="tracker-progress-fill" id="trackerProgressFill" style="width:0%"></div>
       </div>
-      <div class="tracker-progress-labels">
-        <span>ルクラ 2,860m</span>
-        <span id="trackerCurrentLabel">現在地 --m</span>
-        <span>山頂 8,849m</span>
-      </div>
     </div>
-    <p class="tracker-updated" id="trackerUpdated">最終更新: --</p>
+
+    <p class="tracker-updated" id="trackerUpdated">最終更新: -- (Garmin inReach Mini 2)</p>
   </div>
 </section>
 
@@ -1264,152 +1381,367 @@
 // ===== GPS TRACKER =====
 (function() {
   const GPS_JSON_URL = 'data/gps.json';
+
+  // ROUTEにカトマンズ（出発前の現在地）を先頭に追加
   const ROUTE = [
-    { name: 'ルクラ出発',       alt: 2860 },
-    { name: 'ナムチェバザール',  alt: 3440 },
-    { name: 'テンボチェ',       alt: 3867 },
-    { name: 'ディンボチェ',     alt: 4410 },
-    { name: 'ロブチェ',         alt: 4940 },
-    { name: 'BC',              alt: 5364 },
-    { name: 'C1',              alt: 5943 },
-    { name: 'C2',              alt: 6400 },
-    { name: 'C3',              alt: 7200 },
-    { name: 'C4',              alt: 7906 },
-    { name: 'サウスサミット',   alt: 8749 },
-    { name: '山頂',            alt: 8849 },
+    { name: 'カトマンズ',     shortName: 'KTM',     alt: 1400, showLabel: true,  isPreDep: true },
+    { name: 'ルクラ',         shortName: 'ルクラ',  alt: 2860, showLabel: true,  isPreDep: false },
+    { name: 'ナムチェ',       shortName: 'NBC',     alt: 3440, showLabel: true,  isPreDep: false },
+    { name: 'テンボチェ',     shortName: 'TBC',     alt: 3867, showLabel: false, isPreDep: false },
+    { name: 'ディンボチェ',   shortName: 'DBC',     alt: 4410, showLabel: false, isPreDep: false },
+    { name: 'ロブチェ',       shortName: 'ロブ',    alt: 4940, showLabel: true,  isPreDep: false },
+    { name: 'ベースキャンプ', shortName: 'BC',      alt: 5364, showLabel: true,  isPreDep: false },
+    { name: 'C1',             shortName: 'C1',      alt: 5943, showLabel: false, isPreDep: false },
+    { name: 'C2',             shortName: 'C2',      alt: 6400, showLabel: true,  isPreDep: false },
+    { name: 'C3',             shortName: 'C3',      alt: 7200, showLabel: false, isPreDep: false },
+    { name: 'C4',             shortName: 'C4',      alt: 7906, showLabel: true,  isPreDep: false },
+    { name: 'サウスサミット', shortName: 'SS',      alt: 8749, showLabel: false, isPreDep: false },
+    { name: '山頂',           shortName: '山頂',    alt: 8849, showLabel: true,  isPreDep: false },
   ];
 
-  function drawCanvas(canvas, currentAlt) {
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
-    const PAD_L = 55, PAD_R = 20, PAD_T = 20, PAD_B = 50;
-    const chartW = W - PAD_L - PAD_R;
-    const chartH = H - PAD_T - PAD_B;
-    const minAlt = 2000, maxAlt = 9200;
-    function xPos(i) { return PAD_L + (i / (ROUTE.length - 1)) * chartW; }
-    function yPos(alt) { return PAD_T + chartH - ((alt - minAlt) / (maxAlt - minAlt)) * chartH; }
+  // SVG座標計算
+  var SVG_W = 800, SVG_H = 400;
+  var PAD_L = 55, PAD_R = 30, PAD_T = 40, PAD_B = 70;
+  var chartW = SVG_W - PAD_L - PAD_R;
+  var chartH = SVG_H - PAD_T - PAD_B;
+  var MIN_ALT = 800, MAX_ALT = 9500;
+
+  function yPos(alt) {
+    return PAD_T + chartH - ((alt - MIN_ALT) / (MAX_ALT - MIN_ALT)) * chartH;
+  }
+
+  // 山型シルエットパス（エベレスト南東稜ルートの断面形状）
+  // カトマンズ（低地）→ルクラ（登山口）→山頂の流れを表現
+  var MOUNTAIN_SHAPE = [
+    { x: 0,    alt: 800  },  // 左端（底面）
+    { x: 0.03, alt: 1400 },  // カトマンズ
+    { x: 0.07, alt: 1600 },
+    { x: 0.12, alt: 2860 },  // ルクラ（急上昇）
+    { x: 0.18, alt: 3200 },
+    { x: 0.23, alt: 3440 },  // ナムチェ
+    { x: 0.29, alt: 3700 },
+    { x: 0.33, alt: 3867 },  // テンボチェ
+    { x: 0.38, alt: 4100 },
+    { x: 0.42, alt: 4410 },  // ディンボチェ
+    { x: 0.47, alt: 4940 },  // ロブチェ
+    { x: 0.52, alt: 5364 },  // BC
+    { x: 0.57, alt: 5943 },  // C1
+    { x: 0.63, alt: 6400 },  // C2
+    { x: 0.69, alt: 7200 },  // C3
+    { x: 0.75, alt: 7906 },  // C4
+    { x: 0.82, alt: 8400 },
+    { x: 0.87, alt: 8749 },  // サウスサミット
+    { x: 0.92, alt: 8849 },  // 山頂
+    { x: 0.95, alt: 8600 },  // 山頂後の下り
+    { x: 1.0,  alt: 7000 },  // 右端
+  ];
+
+  function mountainX(frac) {
+    return PAD_L + frac * chartW;
+  }
+
+  function buildMountainPath() {
+    var pts = MOUNTAIN_SHAPE.map(function(p) {
+      return { x: mountainX(p.x), y: yPos(p.alt) };
+    });
+    var d = 'M ' + pts[0].x + ' ' + pts[0].y;
+    for (var i = 1; i < pts.length; i++) {
+      d += ' L ' + pts[i].x + ' ' + pts[i].y;
+    }
+    return d;
+  }
+
+  function buildMountainFillPath() {
+    var d = buildMountainPath();
+    d += ' L ' + mountainX(1.0) + ' ' + (SVG_H - PAD_B);
+    d += ' L ' + mountainX(0) + ' ' + (SVG_H - PAD_B);
+    d += ' Z';
+    return d;
+  }
+
+  // ルート上のX座標（MOUNTAIN_SHAPEの各ウェイポイントに対応）
+  // カトマンズ(0.03), ルクラ(0.12), NBC(0.23), TBC(0.33), DBC(0.42),
+  // ロブ(0.47), BC(0.52), C1(0.57), C2(0.63), C3(0.69), C4(0.75), SS(0.87), 山頂(0.92)
+  var ROUTE_X_FRACS = [0.03, 0.16, 0.26, 0.35, 0.43, 0.48, 0.53, 0.58, 0.64, 0.70, 0.76, 0.87, 0.92];
+
+  function routeX(i) {
+    return PAD_L + ROUTE_X_FRACS[i] * chartW;
+  }
+  function routeY(i) {
+    return yPos(ROUTE[i].alt);
+  }
+
+  function drawMountainSvg(currentAlt, currentWpIdx) {
+    var svg = document.getElementById('trackerMountainSvg');
+    if (!svg) return;
+
+    // 山型パス
+    var fill = document.getElementById('mountainFill');
+    var outline = document.getElementById('mountainOutline');
+    if (fill) fill.setAttribute('d', buildMountainFillPath());
+    if (outline) outline.setAttribute('d', buildMountainPath());
+
     // デスゾーンライン
-    const dzY = yPos(8000);
-    ctx.strokeStyle = 'rgba(248,113,113,0.25)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([4, 4]);
-    ctx.beginPath(); ctx.moveTo(PAD_L, dzY); ctx.lineTo(W - PAD_R, dzY); ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.fillStyle = 'rgba(248,113,113,0.5)';
-    ctx.font = '10px monospace';
-    ctx.fillText('DEATH ZONE 8,000m', PAD_L + 4, dzY - 4);
-    // 標高グリッド
-    ctx.fillStyle = 'rgba(240,237,232,0.25)';
-    ctx.font = '9px monospace';
-    [3000, 4000, 5000, 6000, 7000, 8000, 8849].forEach(function(a) {
-      const y = yPos(a);
-      ctx.fillText(a >= 8849 ? '8,849' : (a/1000).toFixed(0)+'k', 4, y + 3);
-      ctx.strokeStyle = 'rgba(212,168,67,0.06)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(PAD_L, y); ctx.lineTo(W - PAD_R, y); ctx.stroke();
-    });
-    // 通過済みルート塗りつぶし
-    const passedIdxs = ROUTE.reduce(function(arr, wp, i) { if (currentAlt >= wp.alt - 100) arr.push(i); return arr; }, []);
-    if (passedIdxs.length > 1) {
-      ctx.beginPath();
-      ctx.moveTo(xPos(passedIdxs[0]), yPos(ROUTE[passedIdxs[0]].alt));
-      passedIdxs.forEach(function(i) { ctx.lineTo(xPos(i), yPos(ROUTE[i].alt)); });
-      const lastI = passedIdxs[passedIdxs.length - 1];
-      ctx.lineTo(xPos(lastI), H - PAD_B);
-      ctx.lineTo(xPos(passedIdxs[0]), H - PAD_B);
-      ctx.closePath();
-      const grad = ctx.createLinearGradient(0, PAD_T, 0, H - PAD_B);
-      grad.addColorStop(0, 'rgba(212,168,67,0.6)');
-      grad.addColorStop(1, 'rgba(212,168,67,0.05)');
-      ctx.fillStyle = grad;
-      ctx.fill();
+    var dzY = yPos(8000);
+    var dzLine = document.getElementById('deathZoneLine');
+    if (dzLine) {
+      dzLine.setAttribute('x1', PAD_L);
+      dzLine.setAttribute('y1', dzY);
+      dzLine.setAttribute('x2', SVG_W - PAD_R);
+      dzLine.setAttribute('y2', dzY);
     }
-    // 未通過ルート（破線）
-    ctx.strokeStyle = 'rgba(240,237,232,0.2)';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    ROUTE.forEach(function(wp, i) {
-      if (i === 0) ctx.moveTo(xPos(i), yPos(wp.alt));
-      else ctx.lineTo(xPos(i), yPos(wp.alt));
-    });
-    ctx.stroke();
-    ctx.setLineDash([]);
-    // 通過済みルート（金色実線）
-    if (passedIdxs.length > 1) {
-      ctx.strokeStyle = '#d4a843';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      passedIdxs.forEach(function(i, n) {
-        if (n === 0) ctx.moveTo(xPos(i), yPos(ROUTE[i].alt));
-        else ctx.lineTo(xPos(i), yPos(ROUTE[i].alt));
+    var dzLabel = document.getElementById('deathZoneLabel');
+    if (dzLabel) {
+      dzLabel.setAttribute('x', PAD_L + 6);
+      dzLabel.setAttribute('y', dzY - 5);
+      dzLabel.textContent = 'DEATH ZONE  8,000m';
+    }
+
+    // ルートパス構築
+    var passedD = '', aheadD = '';
+    for (var i = 0; i < ROUTE.length; i++) {
+      var rx = routeX(i), ry = routeY(i);
+      var cmd = (i === 0) ? 'M' : 'L';
+      if (currentAlt >= ROUTE[i].alt - 200 || i <= currentWpIdx) {
+        passedD += cmd + ' ' + rx + ' ' + ry + ' ';
+      } else {
+        if (!aheadD) {
+          // 通過済みの最後の点から続ける
+          var prevX = routeX(i - 1), prevY = routeY(i - 1);
+          aheadD = 'M ' + prevX + ' ' + prevY + ' ';
+        }
+        aheadD += 'L ' + rx + ' ' + ry + ' ';
+      }
+    }
+    var rPassed = document.getElementById('routePassed');
+    var rAhead = document.getElementById('routeAhead');
+    if (rPassed) rPassed.setAttribute('d', passedD || 'M0 0');
+    if (rAhead) rAhead.setAttribute('d', aheadD || 'M0 0');
+
+    // ウェイポイントグループ再構築
+    var wpGroup = document.getElementById('waypointGroup');
+    if (wpGroup) {
+      wpGroup.innerHTML = '';
+      var ns = 'http://www.w3.org/2000/svg';
+      ROUTE.forEach(function(wp, i) {
+        var wx = routeX(i), wy = routeY(i);
+        var passed = (i <= currentWpIdx);
+        var isCurrent = (i === currentWpIdx);
+
+        // ドット
+        var circle = document.createElementNS(ns, 'circle');
+        circle.setAttribute('cx', wx);
+        circle.setAttribute('cy', wy);
+        circle.setAttribute('r', isCurrent ? 8 : (passed ? 5 : 3.5));
+        circle.setAttribute('fill', isCurrent ? '#4ade80' : (passed ? '#d4a843' : 'rgba(240,237,232,0.2)'));
+        circle.setAttribute('stroke', isCurrent ? 'rgba(74,222,128,0.5)' : (passed ? 'rgba(212,168,67,0.4)' : 'none'));
+        circle.setAttribute('stroke-width', '1.5');
+        wpGroup.appendChild(circle);
+
+        // ラベル（showLabelのもののみ、かつ現在地のKTMは吹き出しで代替するので非表示）
+        if (wp.showLabel && !(isCurrent && i === 0)) {
+          // ラベルの上下位置：個別制御（重なり防止）
+          // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
+          var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true};
+          var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
+          var labelY = labelAbove ? wy - 26 : wy + 26;
+          var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
+          var numColor  = isCurrent ? 'rgba(74,222,128,0.7)' : (passed ? 'rgba(212,168,67,0.55)' : 'rgba(240,237,232,0.25)');
+
+          // 垂直線
+          var vline = document.createElementNS(ns, 'line');
+          vline.setAttribute('x1', wx); vline.setAttribute('y1', wy + (labelAbove ? -6 : 6));
+          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 14 : wy + 14);
+          vline.setAttribute('stroke', nameColor); vline.setAttribute('stroke-width', '0.5');
+          vline.setAttribute('opacity', '0.5');
+          wpGroup.appendChild(vline);
+
+          // ラベル背景（半透明の黒矩形）
+          var bgRect = document.createElementNS(ns, 'rect');
+          var bgW = wp.shortName.length * 8 + 10;
+          var bgH = 28;
+          bgRect.setAttribute('x', wx - bgW / 2);
+          bgRect.setAttribute('y', labelAbove ? labelY - 22 : labelY - 14);
+          bgRect.setAttribute('width', bgW);
+          bgRect.setAttribute('height', bgH);
+          bgRect.setAttribute('rx', '3');
+          bgRect.setAttribute('fill', 'rgba(5,5,5,0.75)');
+          wpGroup.appendChild(bgRect);
+
+          var altLabel = document.createElementNS(ns, 'text');
+          altLabel.setAttribute('x', wx);
+          altLabel.setAttribute('y', labelY);
+          altLabel.setAttribute('text-anchor', 'middle');
+          altLabel.setAttribute('font-size', '13');
+          altLabel.setAttribute('font-family', 'monospace');
+          altLabel.setAttribute('font-weight', isCurrent ? 'bold' : 'normal');
+          altLabel.setAttribute('fill', nameColor);
+          altLabel.textContent = wp.shortName;
+          wpGroup.appendChild(altLabel);
+
+          var altNum = document.createElementNS(ns, 'text');
+          altNum.setAttribute('x', wx);
+          altNum.setAttribute('y', labelY + (labelAbove ? -11 : 11));
+          altNum.setAttribute('text-anchor', 'middle');
+          altNum.setAttribute('font-size', '10');
+          altNum.setAttribute('font-family', 'monospace'); altNum.setAttribute('opacity', '0.85');
+          altNum.setAttribute('fill', numColor);
+          altNum.textContent = wp.alt.toLocaleString() + 'm';
+          wpGroup.appendChild(altNum);
+        }
       });
-      ctx.stroke();
     }
-    // ウェイポイントドット
-    ROUTE.forEach(function(wp, i) {
-      const x = xPos(i), y = yPos(wp.alt);
-      const passed = currentAlt >= wp.alt - 100;
-      ctx.beginPath();
-      ctx.arc(x, y, passed ? 4 : 3, 0, Math.PI * 2);
-      ctx.fillStyle = passed ? '#d4a843' : 'rgba(240,237,232,0.3)';
-      ctx.fill();
-    });
-    // 現在地マーカー（緑）
-    const curIdx = passedIdxs.length > 0 ? passedIdxs[passedIdxs.length - 1] : -1;
-    if (curIdx >= 0) {
-      const cx = xPos(curIdx), cy = yPos(ROUTE[curIdx].alt);
-      ctx.beginPath(); ctx.arc(cx, cy, 7, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(74,222,128,0.25)'; ctx.fill();
-      ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2);
-      ctx.fillStyle = '#4ade80'; ctx.fill();
+
+    // 現在地マーカー
+    var marker = document.getElementById('currentMarker');
+    var pulse = document.getElementById('markerPulse');
+    var dot = document.getElementById('markerDot');
+    var icon = document.getElementById('markerIcon');
+    var bubbleRect = document.getElementById('bubbleRect');
+    var bubbleText = document.getElementById('bubbleText');
+
+    var mx = routeX(currentWpIdx);
+    var my = routeY(currentWpIdx);
+
+    if (marker) {
+      marker.setAttribute('visibility', 'visible');
+      marker.setAttribute('transform', 'translate(' + mx + ',' + my + ')');
     }
-    // X軸ラベル
-    var labelIdxs = [0, 5, 7, 9, 11];
-    ctx.fillStyle = 'rgba(240,237,232,0.4)';
-    ctx.font = '9px monospace';
-    ctx.textAlign = 'center';
-    labelIdxs.forEach(function(i) {
-      ctx.fillText(ROUTE[i].name, xPos(i), H - PAD_B + 14);
+    if (pulse) { pulse.setAttribute('cx', 0); pulse.setAttribute('cy', 0); }
+    if (dot) { dot.setAttribute('cx', 0); dot.setAttribute('cy', 0); }
+    if (icon) { icon.setAttribute('x', 0); icon.setAttribute('y', 0); }
+
+    // 吹き出しテキスト
+    var altStr = currentAlt > 0 ? Math.round(currentAlt).toLocaleString() + 'm' : ROUTE[currentWpIdx].alt.toLocaleString() + 'm';
+    var bubbleStr = '池田 今ここ！ ' + altStr;
+    var bw = bubbleStr.length * 7.5 + 20;
+    var bh = 20;
+    var bx = -bw / 2;
+    var by = -52;
+    // 左端はみ出し防止
+    if (mx + bx < PAD_L) bx = PAD_L - mx;
+    if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
+
+    if (bubbleRect) {
+      bubbleRect.setAttribute('x', bx);
+      bubbleRect.setAttribute('y', by);
+      bubbleRect.setAttribute('width', bw);
+      bubbleRect.setAttribute('height', bh);
+    }
+    if (bubbleText) {
+      bubbleText.setAttribute('x', bx + bw / 2);
+      bubbleText.setAttribute('y', by + bh / 2 + 4);
+      bubbleText.setAttribute('font-size', '11');
+      bubbleText.textContent = bubbleStr;
+    }
+
+    // 山頂フラッグ
+    var summitFlag = document.getElementById('summitFlag');
+    if (summitFlag) {
+      var sx = routeX(12), sy = routeY(12);
+      summitFlag.setAttribute('transform', 'translate(' + sx + ',' + (sy - 18) + ')');
+      var flagText = summitFlag.querySelector('text');
+      if (flagText) { flagText.setAttribute('x', 0); flagText.setAttribute('y', 0); }
+    }
+
+    // 標高グリッドライン（左輺）
+    var existingGrid = svg.querySelectorAll('.alt-grid');
+    existingGrid.forEach(function(el) { el.remove(); });
+    var ns2 = 'http://www.w3.org/2000/svg';
+    [3000, 4000, 5000, 6000, 7000, 8000, 8849].forEach(function(a) {
+      var gy = yPos(a);
+      var line = document.createElementNS(ns2, 'line');
+      line.setAttribute('class', 'alt-grid');
+      line.setAttribute('x1', PAD_L);
+      line.setAttribute('y1', gy);
+      line.setAttribute('x2', SVG_W - PAD_R);
+      line.setAttribute('y2', gy);
+      line.setAttribute('stroke', 'rgba(212,168,67,0.05)');
+      line.setAttribute('stroke-width', '1');
+      svg.insertBefore(line, svg.firstChild);
+
+      var label = document.createElementNS(ns2, 'text');
+      label.setAttribute('class', 'alt-grid');
+      label.setAttribute('x', PAD_L - 4);
+      label.setAttribute('y', gy + 3);
+      label.setAttribute('text-anchor', 'end');
+      label.setAttribute('font-size', '10');
+      label.setAttribute('font-family', 'monospace');
+      label.setAttribute('fill', 'rgba(240,237,232,0.35)');
+      label.textContent = a >= 8849 ? '8,849' : (a / 1000).toFixed(0) + 'k';
+      svg.insertBefore(label, svg.firstChild);
     });
-    ctx.textAlign = 'left';
   }
 
   function updateTracker(data) {
-    const alt = data.altitude || 0;
-    const pct = data.progress_pct || 0;
-    const rawStatus = (data.status || 'PRE-DEPARTURE');
-    const status = rawStatus.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
-    const wpName = data.current_waypoint_name || '--';
-    const updatedAt = data.updated_at_jst || '--';
-    const altEl = document.getElementById('trackerAlt');
-    if (altEl) altEl.textContent = alt > 0 ? Math.round(alt).toLocaleString() + ' m' : '-- m';
-    const pctEl = document.getElementById('trackerPct');
-    if (pctEl) pctEl.textContent = pct + ' %';
-    const wpEl = document.getElementById('trackerWaypoint');
-    if (wpEl) wpEl.textContent = wpName;
-    const updEl = document.getElementById('trackerUpdated');
+    var alt = data.altitude || 0;
+    var pct = data.progress_pct || 0;
+    var rawStatus = (data.status || 'PRE-DEPARTURE');
+    var status = rawStatus.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
+    // ROUTEにカトマンズ(idx=0)を追加したため、fetch_gps.pyのwaypoint_idxに+1する
+    // PRE-DEPARTUREの場合は必ずカトマンズ(0)を指す
+    var rawWpIdx = data.current_waypoint_idx || 0;
+    var wpIdx = (status === 'pre-departure') ? 0 : (rawWpIdx + 1);
+    var wpName = data.current_waypoint_name || '--';
+    var updatedAt = data.updated_at_jst || '--';
+    var summit = 8849;
+    var remain = alt > 0 ? Math.max(0, summit - Math.round(alt)) : summit;
+
+    // 標高表示
+    var altEl = document.getElementById('trackerAlt');
+    // PRE-DEPARTUREはカトマンズの標高を表示
+    var displayAlt = (status === 'pre-departure') ? 1400 : (alt > 0 ? Math.round(alt) : 0);
+    if (altEl) altEl.textContent = displayAlt > 0 ? displayAlt.toLocaleString() : '--';
+
+    // 山頂まであと
+    var remainEl = document.getElementById('trackerRemain');
+    if (remainEl) remainEl.textContent = remain.toLocaleString();
+
+    // 進捗
+    var pctEl = document.getElementById('trackerPct');
+    if (pctEl) pctEl.textContent = pct;
+
+    // 場所名・説明
+    var wpEl = document.getElementById('trackerWaypoint');
+    var descEl = document.getElementById('trackerLocationDesc');
+    var statusDescMap = {
+      'pre-departure': { name: 'カトマンズ滞在中', desc: 'ルクラへのフライトを待機中' },
+      'trekking':      { name: wpName + 'へトレッキング中', desc: 'エベレスト登山ルートを歩いています' },
+      'ascending':     { name: wpName + 'を目指し登頂中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'mを超えました' },
+      'death-zone':    { name: 'デスゾーンを突進中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm — 人間の極限領域' },
+      'summit':        { name: '登頂成功！🏆', desc: 'エベレスト山頂 8,849m 到達' },
+    };
+    var sd = statusDescMap[status] || statusDescMap['pre-departure'];
+    if (wpEl) wpEl.textContent = sd.name;
+    if (descEl) descEl.textContent = sd.desc;
+
+    // 最終更新
+    var updEl = document.getElementById('trackerUpdated');
     if (updEl) updEl.textContent = '最終更新: ' + updatedAt + ' (Garmin inReach Mini 2)';
-    const fillEl = document.getElementById('trackerProgressFill');
+
+    // 進捗バー
+    var fillEl = document.getElementById('trackerProgressFill');
     if (fillEl) fillEl.style.width = pct + '%';
-    const curLabelEl = document.getElementById('trackerCurrentLabel');
+    var curLabelEl = document.getElementById('trackerCurrentLabel');
     if (curLabelEl) curLabelEl.textContent = '現在地 ' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm';
-    const badge = document.getElementById('trackerStatusBadge');
+
+    // ステータスバッジ
+    var badge = document.getElementById('trackerStatusBadge');
     if (badge) {
-      const statusMap = {
-        'pre-departure': { text: 'PRE-DEPARTURE', cls: 'pre-departure' },
-        'trekking':      { text: 'TREKKING', cls: 'trekking' },
-        'ascending':     { text: 'ASCENDING', cls: 'ascending' },
-        'death-zone':    { text: 'DEATH ZONE', cls: 'death-zone' },
-        'summit':        { text: 'SUMMIT 登頂！', cls: 'summit' },
+      var statusMap = {
+        'pre-departure': { text: 'PRE-DEPARTURE 出発前', cls: 'pre-departure' },
+        'trekking':      { text: 'TREKKING トレッキング中', cls: 'trekking' },
+        'ascending':     { text: 'ASCENDING 登頂中', cls: 'ascending' },
+        'death-zone':    { text: 'DEATH ZONE 死の地帯', cls: 'death-zone' },
+        'summit':        { text: 'SUMMIT 登頂成功！', cls: 'summit' },
       };
-      const s = statusMap[status] || statusMap['pre-departure'];
+      var s = statusMap[status] || statusMap['pre-departure'];
       badge.textContent = s.text;
       badge.className = 'tracker-status-badge ' + s.cls;
     }
-    const canvas = document.getElementById('trackerCanvas');
-    if (canvas) drawCanvas(canvas, alt);
+
+    // SVGマウンテン描画
+    drawMountainSvg(displayAlt, wpIdx);
   }
 
   function loadGPS() {
