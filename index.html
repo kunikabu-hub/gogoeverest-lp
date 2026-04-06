@@ -1543,14 +1543,14 @@
           // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
           var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true};
           var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
-          var labelY = labelAbove ? wy - 70 : wy + 34;
+          var labelY = labelAbove ? wy - 34 : wy + 34;
           var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
           var numColor  = isCurrent ? 'rgba(74,222,128,0.9)' : (passed ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.7)');
 
           // 垂直線
           var vline = document.createElementNS(ns, 'line');
           vline.setAttribute('x1', wx); vline.setAttribute('y1', wy + (labelAbove ? -6 : 6));
-          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 30 : wy + 14);
+          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 14 : wy + 14);
           vline.setAttribute('stroke', nameColor); vline.setAttribute('stroke-width', '0.5');
           vline.setAttribute('opacity', '0.5');
           wpGroup.appendChild(vline);
@@ -1560,7 +1560,7 @@
           var bgW = wp.shortName.length * 8 + 10;
           var bgH = 28;
           bgRect.setAttribute('x', wx - bgW / 2);
-          bgRect.setAttribute('y', labelAbove ? labelY - 18 : labelY - 16);
+          bgRect.setAttribute('y', labelAbove ? labelY - 28 : labelY - 16);
           bgRect.setAttribute('width', bgW);
           bgRect.setAttribute('height', bgH);
           bgRect.setAttribute('rx', '3');
@@ -1580,7 +1580,7 @@
 
           var altNum = document.createElementNS(ns, 'text');
           altNum.setAttribute('x', wx);
-          altNum.setAttribute('y', labelY + (labelAbove ? -11 : 11));
+          altNum.setAttribute('y', labelY + (labelAbove ? -18 : 18));
           altNum.setAttribute('text-anchor', 'middle');
           altNum.setAttribute('font-size', '10');
           altNum.setAttribute('font-family', 'monospace'); altNum.setAttribute('opacity', '0.85');
