@@ -852,11 +852,11 @@
   <div class="status-inner">
     <div class="status-item">
       <span class="status-label">CURRENT DAY</span>
-      <span class="status-value">3日目</span>
+      <span class="status-value" id="statusCurrentDay">3日目</span>
     </div>
     <div class="status-item">
       <span class="status-label">CURRENT ALTITUDE</span>
-      <span class="status-value">カトマンズ　1,400m</span>
+      <span class="status-value" id="statusCurrentAlt">カトマンズ　1,400m</span>
     </div>
     <div class="status-item">
       <span class="status-label">DESTINATION</span>
@@ -1830,6 +1830,16 @@
       var s = statusMap[status] || statusMap['pre-departure'];
       badge.textContent = s.text;
       badge.className = 'tracker-status-badge ' + s.cls;
+    }
+
+    // ステータスバー自動更新
+    var dayEl = document.getElementById('statusCurrentDay');
+    if (dayEl && data.day_count) {
+      dayEl.textContent = data.day_count + '日目';
+    }
+    var altEl2 = document.getElementById('statusCurrentAlt');
+    if (altEl2 && data.current_location_label) {
+      altEl2.textContent = data.current_location_label;
     }
 
     // SVGマウンテン描画

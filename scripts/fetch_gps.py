@@ -233,6 +233,20 @@ def fetch_and_convert():
             else:
                 status = "TREKKING"
 
+        # 出発からの日数計算（4/4を1日目とする）
+        from datetime import date
+        DEPARTURE_DATE = date(2026, 4, 4)
+        today_jst = datetime.now(timezone.utc).date()
+        day_count = (today_jst - DEPARTURE_DATE).days + 1
+        day_count = max(1, day_count)
+
+        # CURRENT ALTITUDE表示用ラベル生成
+        if status == 'PRE-DEPARTURE':
+            location_label = 'カトマンズ　1,400m'
+        else:
+            alt_val = int(display_alt) if display_alt else ROUTE[cur_idx]['alt']
+            location_label = ROUTE[cur_idx]['name'] + '　' + f'{alt_val:,}m'
+
         # JSON出力
         output = {
             "updated_at": datetime.now(timezone.utc).isoformat(),
@@ -249,6 +263,8 @@ def fetch_and_convert():
             "current_waypoint_name": ROUTE[cur_idx]["name"],
             "progress_pct": pct,
             "status": status,
+            "day_count": day_count,
+            "current_location_label": location_label,
             "route": ROUTE
         }
 
