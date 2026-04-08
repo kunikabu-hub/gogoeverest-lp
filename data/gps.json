@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-08T00:03:12.762434+00:00",
-  "updated_at_jst": "2026/04/08 00:03 JST",
+  "updated_at": "2026-04-08T03:39:27.927002+00:00",
+  "updated_at_jst": "2026/04/08 03:39 JST",
   "garmin_time": "4/7/2026 8:01:45 PM",
   "lat": 27.743471,
   "lng": 86.712513,
@@ -12,7 +12,9 @@
   "current_waypoint_idx": 0,
   "current_waypoint_name": "ルクラ出発",
   "progress_pct": 0,
-  "status": "PRE-DEPARTURE",
+  "status": "TREKKING",
+  "day_count": 5,
+  "current_location_label": "ルクラ出発　2,617m",
   "route": [
     {
       "name": "ルクラ出発",
