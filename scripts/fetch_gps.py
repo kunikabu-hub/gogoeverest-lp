@@ -219,19 +219,22 @@ def fetch_and_convert():
         if display_alt and display_alt > base_alt:
             pct = min(100, round(((display_alt - base_alt) / (summit_alt - base_alt)) * 100))
 
-        # ステータス判定（表示用標高を使用）
-        status = "ASCENDING"
-        if display_alt is not None:
-            if display_alt < 3000:
-                status = "PRE-DEPARTURE"
-            elif display_alt >= 8849:
+        # ステータス判定（座標ベース）
+        # PRE-DEPARTURE: カトマンズ盆地内（出発前）
+        # TREKKING:      ルート上だがベースキャンプ未満
+        # ASCENDING:     ベースキャンプ以上（5364m）
+        # DEATH ZONE:    7500m以上
+        # SUMMIT:        8849m到達
+        status = "TREKKING"
+        if lat is not None and lng is not None and is_in_kathmandu(lat, lng):
+            status = "PRE-DEPARTURE"
+        elif display_alt is not None:
+            if display_alt >= 8849:
                 status = "SUMMIT"
             elif display_alt >= 7500:
                 status = "DEATH ZONE"
             elif display_alt >= 5364:
                 status = "ASCENDING"
-            else:
-                status = "TREKKING"
 
         # 出発からの日数計算（4/4を1日目とする）
         from datetime import date
