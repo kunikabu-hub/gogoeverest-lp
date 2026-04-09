@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-04-09T06:59:26.032232+00:00",
-  "updated_at_jst": "2026/04/09 06:59 JST",
-  "garmin_time": "4/9/2026 6:25:45 AM",
-  "lat": 27.804078,
-  "lng": 86.710281,
-  "altitude": 3426.22,
-  "garmin_altitude": 3426.22,
+  "updated_at": "2026-04-09T08:24:24.179857+00:00",
+  "updated_at_jst": "2026/04/09 08:24 JST",
+  "garmin_time": "4/9/2026 6:59:45 AM",
+  "lat": 27.803918,
+  "lng": 86.710366,
+  "altitude": 3378.32,
+  "garmin_altitude": 3378.32,
   "altitude_calibrated": true,
   "altitude_note": "Garmin値（キャリブレーション済み）",
   "velocity_kmh": 0.0,
@@ -14,7 +14,7 @@
   "progress_pct": 9,
   "status": "TREKKING",
   "day_count": 6,
-  "current_location_label": "ナムチェバザール　3,426m",
+  "current_location_label": "ナムチェバザール　3,378m",
   "route": [
     {
       "name": "ルクラ出発",
