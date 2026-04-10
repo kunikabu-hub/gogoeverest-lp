@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-09T23:09:40.393187+00:00",
-  "updated_at_jst": "2026/04/09 23:09 JST",
+  "updated_at": "2026-04-10T00:02:07.934533+00:00",
+  "updated_at_jst": "2026/04/10 00:02 JST",
   "garmin_time": "4/9/2026 2:25:30 PM",
   "lat": 27.804765,
   "lng": 86.708243,
@@ -13,7 +13,7 @@
   "current_waypoint_name": "ナムチェバザール",
   "progress_pct": 10,
   "status": "TREKKING",
-  "day_count": 6,
+  "day_count": 7,
   "current_location_label": "ナムチェバザール　3,440m",
   "route": [
     {
