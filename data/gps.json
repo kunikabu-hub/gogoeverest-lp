@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-04-12T17:04:42.483029+00:00",
-  "updated_at_jst": "2026/04/12 17:04 JST",
-  "garmin_time": "4/12/2026 5:04:15 PM",
-  "lat": 27.892516,
-  "lng": 86.829543,
-  "altitude": 4333.43,
-  "garmin_altitude": 4333.43,
+  "updated_at": "2026-04-12T18:00:59.859734+00:00",
+  "updated_at_jst": "2026/04/12 18:00 JST",
+  "garmin_time": "4/12/2026 5:06:15 PM",
+  "lat": 27.892581,
+  "lng": 86.829758,
+  "altitude": 4366.15,
+  "garmin_altitude": 4366.15,
   "altitude_calibrated": true,
   "altitude_note": "Garmin値（キャリブレーション済み）",
   "velocity_kmh": 0.0,
@@ -14,7 +14,7 @@
   "progress_pct": 25,
   "status": "TREKKING",
   "day_count": 9,
-  "current_location_label": "ディンボチェ　4,333m",
+  "current_location_label": "ディンボチェ　4,366m",
   "route": [
     {
       "name": "ルクラ出発",
