@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-14T23:12:17.040843+00:00",
-  "updated_at_jst": "2026/04/14 23:12 JST",
+  "updated_at": "2026-04-15T00:06:57.246506+00:00",
+  "updated_at_jst": "2026/04/15 00:06 JST",
   "garmin_time": "4/14/2026 5:55:00 PM",
   "lat": 27.948918,
   "lng": 86.809716,
@@ -13,7 +13,7 @@
   "current_waypoint_name": "ロブチェ",
   "progress_pct": 34,
   "status": "TREKKING",
-  "day_count": 11,
+  "day_count": 12,
   "current_location_label": "ロブチェ　4,905m",
   "route": [
     {
