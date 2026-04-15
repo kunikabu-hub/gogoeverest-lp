@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-04-15T17:05:41.814620+00:00",
-  "updated_at_jst": "2026/04/15 17:05 JST",
-  "garmin_time": "4/15/2026 12:49:15 PM",
-  "lat": 27.942685,
-  "lng": 86.79197,
-  "altitude": 5186.66,
-  "garmin_altitude": 5186.66,
+  "updated_at": "2026-04-15T18:40:25.123140+00:00",
+  "updated_at_jst": "2026/04/15 18:40 JST",
+  "garmin_time": "4/15/2026 4:49:15 PM",
+  "lat": 27.942641,
+  "lng": 86.791991,
+  "altitude": 5182.63,
+  "garmin_altitude": 5182.63,
   "altitude_calibrated": true,
   "altitude_note": "Garmin値（キャリブレーション済み）",
   "velocity_kmh": 0.0,
@@ -14,7 +14,7 @@
   "progress_pct": 39,
   "status": "TREKKING",
   "day_count": 12,
-  "current_location_label": "ロブチェ　5,186m",
+  "current_location_label": "ロブチェ　5,182m",
   "route": [
     {
       "name": "ルクラ出発",
