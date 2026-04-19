@@ -413,9 +413,13 @@
   }
   .funding-numbers {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-top: 2rem;
+  }
+  @media (min-width: 600px) {
+    .funding-numbers.row1 { grid-template-columns: repeat(3, 1fr); }
+    .funding-numbers.row2 { grid-template-columns: repeat(2, 1fr); }
   }
   .funding-item {
     text-align: center;
@@ -1188,7 +1192,7 @@
     </div>
 
     <!-- 1段目：車座・フレンドファンディング・出発後支援 -->
-    <div class="funding-numbers fade-in" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="funding-numbers row1 fade-in">
       <div class="funding-item">
         <span class="funding-label">全国を巡った車座</span>
         <span class="funding-amount">￥8,997,254</span>
@@ -1206,7 +1210,7 @@
     </div>
 
     <!-- 2段目：累計支援総額・目標まで残り -->
-    <div class="funding-numbers fade-in" style="grid-template-columns: repeat(2, 1fr); margin-top:1.5rem;">
+    <div class="funding-numbers row2 fade-in" style="margin-top:1rem;">
       <div class="funding-item" style="border-color: rgba(212, 168, 67, 0.6);">
         <span class="funding-label">累計支援総額</span>
         <span class="funding-amount">￥24,934,819</span>
