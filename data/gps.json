@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-01T23:28:20.095249+00:00",
-  "updated_at_jst": "2026/05/01 23:28 JST",
+  "updated_at": "2026-05-02T01:12:59.663260+00:00",
+  "updated_at_jst": "2026/05/02 01:12 JST",
   "garmin_time": "5/1/2026 10:42:15 PM",
   "lat": 27.999976,
   "lng": 86.850485,
@@ -13,7 +13,7 @@
   "current_waypoint_name": "キャンプ1（C1）",
   "progress_pct": 51,
   "status": "ASCENDING",
-  "day_count": 28,
+  "day_count": 29,
   "current_location_label": "キャンプ1（C1）　5,943m",
   "route": [
     {
