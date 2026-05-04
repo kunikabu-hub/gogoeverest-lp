@@ -28,6 +28,7 @@ MAPSHARE_URL = "https://share.garmin.com/feed/share/chikaoeverest"
 OUTPUT_PATH = "data/gps.json"
 
 # Garmin標高と既知標高の乖離がこの値（メートル）を超えたら補正値を使用
+# 注意: 現在はGarmin実測値をそのまま使用（補正なし）
 CALIBRATION_THRESHOLD = 300
 
 # エベレスト南東稜ルートのウェイポイント定義（既知の正確な標高）
@@ -121,18 +122,8 @@ def resolve_altitude(garmin_alt, lat, lng):
         else:
             return known_alt, False, f"カトマンズ既知標高を使用（Garmin:{garmin_alt:.0f}m / 既知:{known_alt}m / 差:{diff:.0f}m）"
 
-    # ルート上のウェイポイントで判定
-    nearest_idx, dist_km = get_nearest_waypoint(lat, lng)
-    known_alt = ROUTE[nearest_idx]["alt"]
-    diff = abs(garmin_alt - known_alt)
-
-    if diff <= CALIBRATION_THRESHOLD:
-        return garmin_alt, True, "Garmin値（キャリブレーション済み）"
-    else:
-        return known_alt, False, (
-            f"ウェイポイント既知標高を使用（Garmin:{garmin_alt:.0f}m / "
-            f"既知:{known_alt}m / 差:{diff:.0f}m / 最近傍:{ROUTE[nearest_idx]['name']}）"
-        )
+    # Garmin実測値をそのまま使用（補正なし）
+    return garmin_alt, True, "Garmin実測値（補正なし）"
 
 
 def fetch_and_convert():
@@ -203,14 +194,13 @@ def fetch_and_convert():
         print(f"   Garmin Alt: {garmin_alt}m → Display Alt: {display_alt}m")
         print(f"   Calibrated: {calibrated} | {correction_note}")
 
-        # 現在地ウェイポイント判定（表示用標高で判定）
-        if lat is not None and lng is not None:
+        # 現在地ウェイポイント判定（Garmin実測標高で判定）
+        if display_alt is not None:
+            cur_idx = get_current_waypoint_by_alt(display_alt)
+        elif lat is not None and lng is not None:
             cur_idx, _ = get_nearest_waypoint(lat, lng)
-            # ただし、表示用標高がルクラより低い場合はルクラ出発（idx=0）を維持
-            if display_alt is not None and display_alt < ROUTE[0]["alt"] - 200:
-                cur_idx = 0
         else:
-            cur_idx = get_current_waypoint_by_alt(display_alt) if display_alt else 0
+            cur_idx = 0
 
         # 進捗率計算（表示用標高を使用）
         base_alt = 2860
