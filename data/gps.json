@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-05-13T12:05:47.741292+00:00",
-  "updated_at_jst": "2026/05/13 12:05 JST",
-  "garmin_time": "5/13/2026 8:50:30 AM",
-  "lat": 27.999783,
-  "lng": 86.850293,
-  "altitude": 5255.48,
-  "garmin_altitude": 5255.48,
+  "updated_at": "2026-05-13T15:24:17.611612+00:00",
+  "updated_at_jst": "2026/05/13 15:24 JST",
+  "garmin_time": "5/13/2026 12:42:30 PM",
+  "lat": 27.999708,
+  "lng": 86.850335,
+  "altitude": 5271.76,
+  "garmin_altitude": 5271.76,
   "altitude_calibrated": true,
   "altitude_note": "Garmin実測値（補正なし）",
   "velocity_kmh": 0.0,
@@ -14,7 +14,7 @@
   "progress_pct": 40,
   "status": "TREKKING",
   "day_count": 40,
-  "current_location_label": "ベースキャンプ　5,255m",
+  "current_location_label": "ベースキャンプ　5,271m",
   "route": [
     {
       "name": "ルクラ出発",
