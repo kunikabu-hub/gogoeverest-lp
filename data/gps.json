@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-13T22:47:13.478911+00:00",
-  "updated_at_jst": "2026/05/13 22:47 JST",
+  "updated_at": "2026-05-14T00:00:23.576576+00:00",
+  "updated_at_jst": "2026/05/14 00:00 JST",
   "garmin_time": "5/13/2026 8:42:30 PM",
   "lat": 27.99973,
   "lng": 86.850378,
@@ -13,7 +13,7 @@
   "current_waypoint_name": "ベースキャンプ",
   "progress_pct": 40,
   "status": "TREKKING",
-  "day_count": 40,
+  "day_count": 41,
   "current_location_label": "ベースキャンプ　5,251m",
   "route": [
     {
