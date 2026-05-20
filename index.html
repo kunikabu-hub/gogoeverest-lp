@@ -971,7 +971,7 @@
         </g>
         <!-- 山頂フラッグ -->
         <g id="summitFlag">
-          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="0" letter-spacing="0.5">SUMMIT</text>
+          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="0" letter-spacing="0.5"></text>
         </g>
       </svg>
     </div>
@@ -1654,7 +1654,7 @@
         if (wp.showLabel && !(isCurrent && i === 0)) {
           // ラベルの上下位置：個別制御（重なり防止）
           // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
-          var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true};
+          var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: false, 12: false};
           var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
           var labelY = labelAbove ? wy - 26 : wy + 34;
           var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
@@ -1732,8 +1732,8 @@
     var bh = 34;
     var bx = -bw / 2;
     var by = -68;
-    // 山頂到達時はマーカーの下に配置
-    if (currentWpIdx >= 11) { bx = -bw / 2; by = 16; }
+    // 山頂到達時はNOW吹き出しは上、ワイポイントラベルは下
+    if (currentWpIdx >= 11) { bx = -bw / 2; by = -68; }
     // 左端はみ出し防止
     if (mx + bx < PAD_L) bx = PAD_L - mx;
     if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
@@ -1766,7 +1766,7 @@
     var summitFlag = document.getElementById('summitFlag');
     if (summitFlag) {
       var sx = routeX(12), sy = routeY(12);
-      summitFlag.setAttribute('transform', 'translate(' + sx + ',' + (sy + 30) + ')');
+      summitFlag.setAttribute('transform', 'translate(' + sx + ',' + (sy + 20) + ')');
       var flagText = summitFlag.querySelector('text');
       if (flagText) { flagText.setAttribute('x', 0); flagText.setAttribute('y', 0); }
     }
@@ -1795,7 +1795,8 @@
       label.setAttribute('font-size', '10');
       label.setAttribute('font-family', 'monospace');
       label.setAttribute('fill', 'rgba(240,237,232,0.35)');
-      label.textContent = a >= 8849 ? '8,849' : (a / 1000).toFixed(0) + 'k';
+      if (a >= 8849) { label.remove(); return; }
+      label.textContent = (a / 1000).toFixed(0) + 'k';
       svg.insertBefore(label, svg.firstChild);
     });
   }
