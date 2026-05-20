@@ -1732,6 +1732,8 @@
     var bh = 34;
     var bx = -bw / 2;
     var by = -68;
+    // 山頂到達時はSUMMITラベルと重ならないよう左上にオフセット
+    if (currentWpIdx >= 11) { bx = -bw - 10; by = -80; }
     // 左端はみ出し防止
     if (mx + bx < PAD_L) bx = PAD_L - mx;
     if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
