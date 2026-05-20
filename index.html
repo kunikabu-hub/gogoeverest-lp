@@ -1845,7 +1845,7 @@
       'trekking':      { name: wpName + 'へトレッキング中', desc: 'エベレスト登山ルートを歩いています' },
       'ascending':     { name: '山頂アタック中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'mに到達' },
       'death-zone':    { name: 'デスゾーンを突進中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm — 人間の極限領域' },
-      'summit':        { name: '登頂成功！🏆', desc: 'エベレスト山頂 8,849m 到達' },
+      'summit':        { name: '山頂到達！🏆', desc: 'エベレスト山頂 8,848.86m 到達' },
     };
     var sd = statusDescMap[status] || statusDescMap['pre-departure'];
     if (wpEl) wpEl.textContent = sd.name;
@@ -1872,7 +1872,7 @@
         'trekking':      { text: 'TREKKING トレッキング中', cls: 'trekking' },
         'ascending':     { text: 'ASCENDING 登頂中', cls: 'ascending' },
         'death-zone':    { text: 'DEATH ZONE 死の地帯', cls: 'death-zone' },
-        'summit':        { text: 'SUMMIT 登頂成功！', cls: 'summit' },
+        'summit':        { text: 'SUMMIT 山頂到達！', cls: 'summit' },
       };
       var s = statusMap[status] || statusMap['pre-departure'];
       badge.textContent = s.text;
