@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-21T04:52:39.355310+00:00",
-  "updated_at_jst": "2026/05/21 04:52 JST",
+  "updated_at": "2026-05-21T08:32:20.191970+00:00",
+  "updated_at_jst": "2026/05/21 08:32 JST",
   "garmin_time": "5/18/2026 2:03:00 PM",
   "lat": 27.969786,
   "lng": 86.918763,
@@ -12,9 +12,9 @@
   "current_waypoint_idx": 8,
   "current_waypoint_name": "キャンプ3（C3）",
   "progress_pct": 74,
-  "status": "descending",
+  "status": "ASCENDING",
   "day_count": 48,
-  "current_location_label": "エベレスト登頂後・下山中",
+  "current_location_label": "キャンプ3（C3）　7,303m",
   "route": [
     {
       "name": "ルクラ出発",
