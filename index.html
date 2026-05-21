@@ -734,6 +734,7 @@
   .tracker-status-badge.pre-departure { color: #d4a843; border-color: #d4a843; }
   .tracker-status-badge.death-zone { color: #f87171; border-color: #f87171; }
   .tracker-status-badge.summit { color: #ffd700; border-color: #ffd700; }
+  .tracker-status-badge.descending { color: #a78bfa; border-color: #a78bfa; }
   .tracker-location-name {
     font-size: 1.4rem;
     font-weight: 300;
@@ -1849,6 +1850,7 @@
       'ascending':     { name: '山頂アタック中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'mに到達' },
       'death-zone':    { name: 'デスゾーンを突進中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm — 人間の極限領域' },
       'summit':        { name: '山頂到達！🏆', desc: 'エベレスト山頂 8,848.86m 到達' },
+      'descending':    { name: '登頂成功・下山中', desc: 'エベレスト登頂後、現在下山中です' },
     };
     var sd = statusDescMap[status] || statusDescMap['pre-departure'];
     if (wpEl) wpEl.textContent = sd.name;
@@ -1876,6 +1878,7 @@
         'ascending':     { text: 'ASCENDING 登頂中', cls: 'ascending' },
         'death-zone':    { text: 'DEATH ZONE 死の地帯', cls: 'death-zone' },
         'summit':        { text: 'SUMMIT 山頂到達！', cls: 'summit' },
+        'descending':    { text: 'DESCENDING 下山中', cls: 'descending' },
       };
       var s = statusMap[status] || statusMap['pre-departure'];
       badge.textContent = s.text;
