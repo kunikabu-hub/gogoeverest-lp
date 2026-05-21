@@ -1735,11 +1735,15 @@
     var by = -68;
     // 山頂到達時はNOW吹き出しは上、ワイポイントラベルは下
     if (currentWpIdx >= 11) { bx = -bw / 2; by = -68; }
-    // 下山中はNOW吹き出しを左側にオフセットしてウェイポイントラベルと被らないようにする
-    if (status === 'descending') { bx = -bw - 10; by = -50; }
-    // 左端はみ出し防止
-    if (mx + bx < PAD_L) bx = PAD_L - mx;
-    if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
+    // 下山中はNOW吹き出しをマーカーの上に表示（左側にオフセットしてラベルと被らないように）
+    if (status === 'descending') { bx = -bw - 8; by = -68; }
+    // 左端はみ出し防止（descending時は適用しない）
+    if (status !== 'descending') {
+      if (mx + bx < PAD_L) bx = PAD_L - mx;
+      if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
+    } else {
+      if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
+    }
 
     if (bubbleRect) {
       bubbleRect.setAttribute('x', bx);
@@ -1834,12 +1838,12 @@
       if (remainEl) remainEl.textContent = descRemain.toLocaleString();
       if (remainLabelEl) remainLabelEl.textContent = 'KTMまであと';
       if (destEl) destEl.textContent = 'KTM 帰還中';
-      if (iconEl) { iconEl.setAttribute('transform', 'scale(-1,1)'); iconEl.setAttribute('x', '0'); }
+      if (iconEl) { iconEl.textContent = '🚶'; iconEl.setAttribute('transform', 'translate(18,0) scale(-1,1)'); iconEl.setAttribute('x', '0'); }
     } else {
       if (remainEl) remainEl.textContent = remain.toLocaleString();
       if (remainLabelEl) remainLabelEl.textContent = '山頂まであと';
       if (destEl) destEl.textContent = '8,848.86 m';
-      if (iconEl) { iconEl.setAttribute('transform', 'scale(1,1)'); iconEl.setAttribute('x', '0'); }
+      if (iconEl) { iconEl.textContent = '🚶'; iconEl.setAttribute('transform', 'scale(1,1)'); iconEl.setAttribute('x', '0'); }
     }
 
     // 進捗
