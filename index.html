@@ -874,7 +874,7 @@
     </div>
     <div class="status-item">
       <span class="status-label">DESTINATION</span>
-      <span class="status-value">8,848.86 m</span>
+      <span class="status-value" id="statusDestination">8,848.86 m</span>
     </div>
   </div>
 </div>
@@ -906,7 +906,7 @@
           <span class="tracker-stat-unit">m</span>
         </div>
         <div class="tracker-stat">
-          <span class="tracker-stat-label">山頂まであと</span>
+          <span class="tracker-stat-label" id="trackerRemainLabel">山頂まであと</span>
           <span class="tracker-stat-value" id="trackerRemain">--</span>
           <span class="tracker-stat-unit">m</span>
         </div>
@@ -963,7 +963,7 @@
           <!-- アイコン本体 -->
           <circle id="markerDot" r="7" fill="#4ade80" filter="url(#glowGreen)"/>
           <!-- 人型アイコン -->
-          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22" transform="scale(-1,1)">🚶</text>
+          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22" transform="scale(1,1)">🚶</text>
           <!-- 吹き出し -->
           <g id="markerBubble">
             <rect id="bubbleRect" rx="3" fill="rgba(10,10,10,0.9)" stroke="#4ade80" stroke-width="1"/>
@@ -1735,6 +1735,8 @@
     var by = -68;
     // 山頂到達時はNOW吹き出しは上、ワイポイントラベルは下
     if (currentWpIdx >= 11) { bx = -bw / 2; by = -68; }
+    // 下山中はNOW吹き出しを左側にオフセットしてウェイポイントラベルと被らないようにする
+    if (status === 'descending') { bx = -bw - 10; by = -50; }
     // 左端はみ出し防止
     if (mx + bx < PAD_L) bx = PAD_L - mx;
     if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
@@ -1822,9 +1824,23 @@
     var displayAlt = (status === 'pre-departure') ? 1400 : (alt > 0 ? Math.round(alt) : 0);
     if (altEl) altEl.textContent = displayAlt > 0 ? displayAlt.toLocaleString() : '--';
 
-    // 山頂まであと
+    // 山頂まであと（下山中はカトマンズまでの標高差を表示）
     var remainEl = document.getElementById('trackerRemain');
-    if (remainEl) remainEl.textContent = remain.toLocaleString();
+    var remainLabelEl = document.getElementById('trackerRemainLabel');
+    var destEl = document.getElementById('statusDestination');
+    var iconEl = document.getElementById('markerIcon');
+    if (status === 'descending') {
+      var descRemain = alt > 0 ? Math.max(0, Math.round(alt) - 1400) : 0;
+      if (remainEl) remainEl.textContent = descRemain.toLocaleString();
+      if (remainLabelEl) remainLabelEl.textContent = 'KTMまであと';
+      if (destEl) destEl.textContent = 'KTM 帰還中';
+      if (iconEl) { iconEl.setAttribute('transform', 'scale(-1,1)'); iconEl.setAttribute('x', '0'); }
+    } else {
+      if (remainEl) remainEl.textContent = remain.toLocaleString();
+      if (remainLabelEl) remainLabelEl.textContent = '山頂まであと';
+      if (destEl) destEl.textContent = '8,848.86 m';
+      if (iconEl) { iconEl.setAttribute('transform', 'scale(1,1)'); iconEl.setAttribute('x', '0'); }
+    }
 
     // 進捗
     var pctEl = document.getElementById('trackerPct');
