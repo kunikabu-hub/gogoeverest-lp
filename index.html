@@ -353,11 +353,12 @@
     align-items: center;
   }
   .inori-video {
+    max-width: 404px;
     width: 100%;
-    max-width: 720px;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 4px;
+    aspect-ratio: 404 / 720;
+    display: block;
+    margin: 2rem auto 0;
+    border-radius: 8px;
   }
   .inori-img {
     width: 100%;
@@ -1129,7 +1130,7 @@
       心よりお礼申し上げます。
     </p>
     <div class="inori-media-wrap fade-in">
-      <video class="inori-video" controls playsinline muted poster="assets/inori-fuda-poster.jpg">
+      <video class="inori-video" controls playsinline muted poster="assets/inori-fuda-poster.jpg" style="max-width:404px; width:100%; aspect-ratio:404/720; display:block; margin:0 auto;">
         <source src="assets/inori-fuda.mp4" type="video/mp4">
       </video>
     </div>
