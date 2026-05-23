@@ -1514,6 +1514,21 @@
   startAuto();
 })();
 
+// ===== FADE-IN ON SCROLL =====
+(function() {
+  const fadeEls = document.querySelectorAll('.fade-in');
+  if (!fadeEls.length) return;
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(function(el) { observer.observe(el); });
+})();
+
 </script>
 
 </body>
