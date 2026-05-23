@@ -412,7 +412,7 @@
   }
   .funding-bar {
     height: 100%;
-    width: 93.0%;
+    width: 94.9%;
     background: linear-gradient(to right, #d4a843, #e8c060);
     border-radius: 4px;
     transition: width 1s ease;
@@ -836,6 +836,63 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ===== LINEカルーセル ===== */
+  .line-carousel-wrap {
+    position: relative;
+    max-width: 640px;
+    margin: 2rem auto 0;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .line-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .line-carousel-track img {
+    min-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .line-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .line-carousel-btn:hover { background: rgba(0,0,0,0.8); }
+  .line-carousel-btn.prev { left: 8px; }
+  .line-carousel-btn.next { right: 8px; }
+  .line-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 0.8rem;
+  }
+  .line-carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(240,237,232,0.3);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .line-carousel-dot.active { background: #d4a843; }
+
 </style>
 </head>
 <body>
@@ -1130,15 +1187,18 @@
     <div class="divider fade-in"></div>
     <p class="section-text fade-in">
       全国で集まった250枚の祈り札。<br>
+      世界で最も空に近い場所へ届きました。<br>
       <br>
-      それぞれが、<br>
+      全国から寄せられたひとつひとつの想いを携え、<br>
+      当初予定していたタンボチェ僧院を越え、<br>
+      エベレスト山頂へご奉納申し上げました。<br>
+      <br>
       大切な人の幸せや、自分の挑戦への想い。<br>
       世界平和、そしてエベレストからの無事帰還。<br>
-      さまざまな願いが、ここに込められています。<br>
-      これらは、エベレストベース<br>キャンプ沿いにある<br>
-      タンボチェ僧院へ奉納します。<br>
-      世界で最も空に近い場所で、<br>
-      人の想いは、祈りとして捧げられる。
+      それぞれの想いを胸に、共に登頂しました。<br>
+      <br>
+      お札をお寄せいただいたすべての方へ、<br>
+      心よりお礼申し上げます。
     </p>
     <div class="inori-media-wrap fade-in">
       <video class="inori-video" controls playsinline muted poster="assets/inori-fuda-poster.jpg">
@@ -1198,7 +1258,7 @@
       <div class="funding-bar-wrap">
         <div class="funding-bar"></div>
       </div>
-      <p style="text-align:right; font-size: 0.85rem; color: rgba(240,237,232,0.5); margin-bottom: 1rem;">達成率 93.0%</p>
+      <p style="text-align:right; font-size: 0.85rem; color: rgba(240,237,232,0.5); margin-bottom: 1rem;">達成率 94.9%</p>
     </div>
 
     <!-- 1段目：車座・フレンドファンディング・出発後支援 -->
@@ -1215,7 +1275,7 @@
       </div>
       <div class="funding-item">
         <span class="funding-label">出発後支援</span>
-        <span class="funding-amount">￥1,012,000</span>
+        <span class="funding-amount">￥1,527,748</span>
       </div>
     </div>
 
@@ -1223,12 +1283,12 @@
     <div class="funding-numbers row2 fade-in" style="margin-top:1rem;">
       <div class="funding-item" style="border-color: rgba(212, 168, 67, 0.6);">
         <span class="funding-label">累計支援総額</span>
-        <span class="funding-amount">￥25,302,819</span>
+        <span class="funding-amount">￥25,817,567</span>
         <p class="funding-total">目標 ￥27,198,026</p>
       </div>
       <div class="funding-item" style="border-color: rgba(255,107,107,0.4); background:rgba(255,107,107,0.05);">
         <span class="funding-label">目標まで残り</span>
-        <span style="display:block; font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:700; color:#ff6b6b; letter-spacing:0.03em; line-height:1.1; margin-top:0.4rem;">￥1,895,207</span>
+        <span style="display:block; font-size:clamp(1.6rem, 4vw, 2.4rem); font-weight:700; color:#ff6b6b; letter-spacing:0.03em; line-height:1.1; margin-top:0.4rem;">￥1,379,459</span>
         <p class="funding-total" style="margin-top:0.6rem;">登りながら、下りながら集めていく</p>
       </div>
     </div>
@@ -1470,13 +1530,34 @@
   <div class="section-inner">
     <p class="section-label fade-in">STAY CONNECTED</p>
     <h2 class="section-title fade-in" style="font-size: 1.6rem;">
-      登頂までの日記を<br>LINEで受け取る
+      登頂の記録を<br>LINEで受け取る
     </h2>
     <p class="section-text fade-in" style="text-align:center;">
-      登頂までの日記や、現地の風景をダイレクトにお届けします。<br>
-      また、帰国後の「決起会・報告会」や「リターンの詳細」についても、ご案内いたします。
+      登頂の記録や、現地の風景をダイレクトにお届けします。<br>
+      帰国後の「報告会」や「リターンの詳細」についても、ご案内いたします。
     </p>
-    <div class="fade-in" style="text-align:center;">
+    <!-- カルーセル -->
+    <div class="line-carousel-wrap fade-in" id="lineCarousel">
+      <div class="line-carousel-track" id="lineCarouselTrack">
+        <img src="assets/slides/slide01.png" alt="スライド1">
+        <img src="assets/slides/slide02.png" alt="スライド2">
+        <img src="assets/slides/slide03.png" alt="スライド3">
+        <img src="assets/slides/slide04.png" alt="スライド4">
+        <img src="assets/slides/slide05.png" alt="スライド5">
+        <img src="assets/slides/slide06.png" alt="スライド6">
+      </div>
+      <button class="line-carousel-btn prev" id="lineCarouselPrev" aria-label="前へ">&#8249;</button>
+      <button class="line-carousel-btn next" id="lineCarouselNext" aria-label="次へ">&#8250;</button>
+    </div>
+    <div class="line-carousel-dots fade-in" id="lineCarouselDots">
+      <span class="line-carousel-dot active" data-index="0"></span>
+      <span class="line-carousel-dot" data-index="1"></span>
+      <span class="line-carousel-dot" data-index="2"></span>
+      <span class="line-carousel-dot" data-index="3"></span>
+      <span class="line-carousel-dot" data-index="4"></span>
+      <span class="line-carousel-dot" data-index="5"></span>
+    </div>
+    <div class="fade-in" style="text-align:center; margin-top:1.5rem;">
       <a href="https://lin.ee/u8WcT0X" target="_blank" class="line-btn">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
         LINEで受け取る
@@ -1942,6 +2023,61 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== LINE CAROUSEL =====
+(function() {
+  const track = document.getElementById('lineCarouselTrack');
+  const dots = document.querySelectorAll('#lineCarouselDots .line-carousel-dot');
+  const prevBtn = document.getElementById('lineCarouselPrev');
+  const nextBtn = document.getElementById('lineCarouselNext');
+  if (!track) return;
+
+  const total = track.children.length;
+  let current = 0;
+  let timer = null;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function startAuto() {
+    timer = setInterval(function() { goTo(current + 1); }, 4000);
+  }
+
+  function stopAuto() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function() { stopAuto(); goTo(current - 1); startAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { stopAuto(); goTo(current + 1); startAuto(); });
+
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      stopAuto();
+      goTo(parseInt(d.getAttribute('data-index')));
+      startAuto();
+    });
+  });
+
+  // タッチスワイプ対応
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    stopAuto();
+  }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); }
+    startAuto();
+  }, { passive: true });
+
+  startAuto();
+})();
+
 </script>
 
 </body>
