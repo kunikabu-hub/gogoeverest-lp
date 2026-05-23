@@ -923,130 +923,58 @@
   <div class="status-inner">
     <div class="status-item">
       <span class="status-label">CURRENT DAY</span>
-      <span class="status-value" id="statusCurrentDay">3日目</span>
+      <span class="status-value" id="statusCurrentDay">48日目</span>
     </div>
     <div class="status-item">
       <span class="status-label">CURRENT ALTITUDE</span>
-      <span class="status-value" id="statusCurrentAlt">カトマンズ　1,400m</span>
+      <span class="status-value" id="statusCurrentAlt">登頂成功！</span>
     </div>
     <div class="status-item">
       <span class="status-label">DESTINATION</span>
-      <span class="status-value" id="statusDestination">8,848.86 m</span>
+      <span class="status-value" id="statusDestination">下山</span>
     </div>
   </div>
 </div>
 
-<!-- ===== GPS TRACKER ===== -->
-<section id="tracker" class="tracker-section">
+
+<!-- ===== LINE ===== -->
+<section class="line-section">
   <div class="section-inner">
-    <div class="tracker-header">
-      <div class="tracker-live-badge">
-        <span class="tracker-live-dot"></span>
-        <span>LIVE TRACKING</span>
+    <p class="section-label fade-in">STAY CONNECTED</p>
+    <h2 class="section-title fade-in" style="font-size: 1.6rem;">
+      登頂の記録を<br>LINEで受け取る
+    </h2>
+    <p class="section-text fade-in" style="text-align:center;">
+      登頂の記録や、現地の風景をダイレクトにお届けします。<br>
+      帰国後の「報告会」や「リターンの詳細」についても、ご案内いたします。
+    </p>
+    <!-- カルーセル -->
+    <div class="line-carousel-wrap fade-in" id="lineCarousel">
+      <div class="line-carousel-track" id="lineCarouselTrack">
+        <img src="assets/slides/slide01.png" alt="スライド1">
+        <img src="assets/slides/slide02.png" alt="スライド2">
+        <img src="assets/slides/slide03.png" alt="スライド3">
+        <img src="assets/slides/slide04.png" alt="スライド4">
+        <img src="assets/slides/slide05.png" alt="スライド5">
+        <img src="assets/slides/slide06.png" alt="スライド6">
       </div>
-      <p class="section-label">GPS TRACKER</p>
-      <h2 class="section-title">池田親生は今、どこにいる？</h2>
-      <div class="divider"></div>
+      <button class="line-carousel-btn prev" id="lineCarouselPrev" aria-label="前へ">&#8249;</button>
+      <button class="line-carousel-btn next" id="lineCarouselNext" aria-label="次へ">&#8250;</button>
     </div>
-
-    <!-- ステータスカード -->
-    <div class="tracker-status-card">
-      <div class="tracker-status-main">
-        <div id="trackerStatusBadge" class="tracker-status-badge pre-departure">PRE-DEPARTURE</div>
-        <p class="tracker-location-name" id="trackerWaypoint">カトマンズ滞在中</p>
-        <p class="tracker-location-desc" id="trackerLocationDesc">ルクラへのフライトを待機中</p>
-      </div>
-      <div class="tracker-stats-grid">
-        <div class="tracker-stat">
-          <span class="tracker-stat-label">現在地標高</span>
-          <span class="tracker-stat-value highlight" id="trackerAlt">--</span>
-          <span class="tracker-stat-unit">m</span>
-        </div>
-        <div class="tracker-stat">
-          <span class="tracker-stat-label" id="trackerRemainLabel">山頂まであと</span>
-          <span class="tracker-stat-value" id="trackerRemain">--</span>
-          <span class="tracker-stat-unit">m</span>
-        </div>
-        <div class="tracker-stat">
-          <span class="tracker-stat-label">進捗</span>
-          <span class="tracker-stat-value" id="trackerPct">--</span>
-          <span class="tracker-stat-unit">%</span>
-        </div>
-      </div>
+    <div class="line-carousel-dots fade-in" id="lineCarouselDots">
+      <span class="line-carousel-dot active" data-index="0"></span>
+      <span class="line-carousel-dot" data-index="1"></span>
+      <span class="line-carousel-dot" data-index="2"></span>
+      <span class="line-carousel-dot" data-index="3"></span>
+      <span class="line-carousel-dot" data-index="4"></span>
+      <span class="line-carousel-dot" data-index="5"></span>
     </div>
-
-    <!-- マウンテンビジュアライザー -->
-    <div class="tracker-mountain-wrap">
-      <svg id="trackerMountainSvg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-        <!-- 山型シルエット -->
-        <defs>
-          <linearGradient id="mountainGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(212,168,67,0.25)"/>
-            <stop offset="100%" stop-color="rgba(212,168,67,0.04)"/>
-          </linearGradient>
-          <linearGradient id="routePassedGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#d4a843"/>
-            <stop offset="100%" stop-color="#f0c060"/>
-          </linearGradient>
-          <filter id="glowGreen">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="glowGold">
-            <feGaussianBlur stdDeviation="2" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <!-- 山型塗りつぶしエリア -->
-        <path id="mountainFill" fill="url(#mountainGrad)" stroke="none"/>
-        <!-- 山型アウトライン -->
-        <path id="mountainOutline" fill="none" stroke="rgba(240,237,232,0.25)" stroke-width="2"/>
-        <!-- デスゾーンライン -->
-        <line id="deathZoneLine" x1="0" y1="0" x2="0" y2="0" stroke="rgba(248,113,113,0.35)" stroke-width="1" stroke-dasharray="6,4"/>
-        <text id="deathZoneLabel" fill="rgba(248,113,113,0.6)" font-size="9" font-family="monospace" letter-spacing="1"></text>
-        <!-- 通過済みルート -->
-        <path id="routePassed" fill="none" stroke="url(#routePassedGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- 未通過ルート -->
-        <path id="routeAhead" fill="none" stroke="rgba(240,237,232,0.2)" stroke-width="1.5" stroke-dasharray="5,4"/>
-        <!-- ウェイポイントドット・ラベル -->
-        <g id="waypointGroup"></g>
-        <!-- 現在地マーカー -->
-        <g id="currentMarker" visibility="hidden">
-          <!-- パルスリング -->
-          <circle id="markerPulse" r="16" fill="rgba(74,222,128,0.15)">
-            <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <!-- アイコン本体 -->
-          <circle id="markerDot" r="7" fill="#4ade80" filter="url(#glowGreen)"/>
-          <!-- 人型アイコン -->
-          <text id="markerIcon" text-anchor="middle" dominant-baseline="middle" font-size="18" dy="-22" transform="scale(1,1)">🚶</text>
-          <!-- 吹き出し -->
-          <g id="markerBubble">
-            <rect id="bubbleRect" rx="3" fill="rgba(10,10,10,0.9)" stroke="#4ade80" stroke-width="1"/>
-            <text id="bubbleText" fill="#4ade80" font-size="9" font-family="monospace" letter-spacing="0.5" text-anchor="middle"></text>
-          </g>
-        </g>
-        <!-- 山頂フラッグ -->
-        <g id="summitFlag">
-          <text text-anchor="middle" font-size="9" font-family="monospace" fill="#ffd700" dy="0" letter-spacing="0.5"></text>
-        </g>
-      </svg>
+    <div class="fade-in" style="text-align:center; margin-top:1.5rem;">
+      <a href="https://lin.ee/u8WcT0X" target="_blank" class="line-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        LINEで受け取る
+      </a>
     </div>
-
-    <!-- 進捗バー -->
-    <div class="tracker-progress-wrap">
-      <div class="tracker-progress-header">
-        <span>カトマンズ</span>
-        <span id="trackerCurrentLabel">現在地 --m</span>
-        <span>山頂（8,849m）</span>
-      </div>
-      <div class="tracker-progress-bar">
-        <div class="tracker-progress-fill" id="trackerProgressFill" style="width:0%"></div>
-      </div>
-    </div>
-
-    <p class="tracker-updated" id="trackerUpdated">最終更新: -- (Garmin inReach Mini 2)</p>
   </div>
 </section>
 
@@ -1525,46 +1453,6 @@
   </div>
 </section>
 
-<!-- ===== LINE ===== -->
-<section class="line-section">
-  <div class="section-inner">
-    <p class="section-label fade-in">STAY CONNECTED</p>
-    <h2 class="section-title fade-in" style="font-size: 1.6rem;">
-      登頂の記録を<br>LINEで受け取る
-    </h2>
-    <p class="section-text fade-in" style="text-align:center;">
-      登頂の記録や、現地の風景をダイレクトにお届けします。<br>
-      帰国後の「報告会」や「リターンの詳細」についても、ご案内いたします。
-    </p>
-    <!-- カルーセル -->
-    <div class="line-carousel-wrap fade-in" id="lineCarousel">
-      <div class="line-carousel-track" id="lineCarouselTrack">
-        <img src="assets/slides/slide01.png" alt="スライド1">
-        <img src="assets/slides/slide02.png" alt="スライド2">
-        <img src="assets/slides/slide03.png" alt="スライド3">
-        <img src="assets/slides/slide04.png" alt="スライド4">
-        <img src="assets/slides/slide05.png" alt="スライド5">
-        <img src="assets/slides/slide06.png" alt="スライド6">
-      </div>
-      <button class="line-carousel-btn prev" id="lineCarouselPrev" aria-label="前へ">&#8249;</button>
-      <button class="line-carousel-btn next" id="lineCarouselNext" aria-label="次へ">&#8250;</button>
-    </div>
-    <div class="line-carousel-dots fade-in" id="lineCarouselDots">
-      <span class="line-carousel-dot active" data-index="0"></span>
-      <span class="line-carousel-dot" data-index="1"></span>
-      <span class="line-carousel-dot" data-index="2"></span>
-      <span class="line-carousel-dot" data-index="3"></span>
-      <span class="line-carousel-dot" data-index="4"></span>
-      <span class="line-carousel-dot" data-index="5"></span>
-    </div>
-    <div class="fade-in" style="text-align:center; margin-top:1.5rem;">
-      <a href="https://lin.ee/u8WcT0X" target="_blank" class="line-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        LINEで受け取る
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- ===== フッター ===== -->
 <footer>
@@ -1572,458 +1460,7 @@
 </footer>
 
 <script>
-// ===== GPS TRACKER =====
-(function() {
-  const GPS_JSON_URL = 'data/gps.json';
-
-  // ROUTEにカトマンズ（出発前の現在地）を先頭に追加
-  const ROUTE = [
-    { name: 'カトマンズ',     shortName: 'KTM',     alt: 1400, showLabel: true,  isPreDep: true },
-    { name: 'ルクラ',         shortName: 'ルクラ',  alt: 2860, showLabel: true,  isPreDep: false },
-    { name: 'ナムチェ',       shortName: 'NBC',     alt: 3440, showLabel: true,  isPreDep: false },
-    { name: 'テンボチェ',     shortName: 'TBC',     alt: 3867, showLabel: false, isPreDep: false },
-    { name: 'ディンボチェ',   shortName: 'DBC',     alt: 4410, showLabel: false, isPreDep: false },
-    { name: 'ロブチェ',       shortName: 'ロブ',    alt: 4940, showLabel: true,  isPreDep: false },
-    { name: 'ベースキャンプ', shortName: 'BC',      alt: 5364, showLabel: true,  isPreDep: false },
-    { name: 'C1',             shortName: 'C1',      alt: 5943, showLabel: false, isPreDep: false },
-    { name: 'C2',             shortName: 'C2',      alt: 6400, showLabel: true,  isPreDep: false },
-    { name: 'C3',             shortName: 'C3',      alt: 7200, showLabel: false, isPreDep: false },
-    { name: 'C4',             shortName: 'C4',      alt: 7906, showLabel: true,  isPreDep: false },
-    { name: 'サウスサミット', shortName: 'SS',      alt: 8749, showLabel: false, isPreDep: false },
-    { name: '山頂',           shortName: '山頂',    alt: 8849, showLabel: true,  isPreDep: false },
-  ];
-
-  // SVG座標計算
-  var SVG_W = 800, SVG_H = 400;
-  var PAD_L = 55, PAD_R = 30, PAD_T = 40, PAD_B = 70;
-  var chartW = SVG_W - PAD_L - PAD_R;
-  var chartH = SVG_H - PAD_T - PAD_B;
-  var MIN_ALT = 800, MAX_ALT = 9500;
-
-  function yPos(alt) {
-    return PAD_T + chartH - ((alt - MIN_ALT) / (MAX_ALT - MIN_ALT)) * chartH;
-  }
-
-  // 山型シルエットパス（エベレスト南東稜ルートの断面形状）
-  // カトマンズ（低地）→ルクラ（登山口）→山頂の流れを表現
-  var MOUNTAIN_SHAPE = [
-    { x: 0,    alt: 800  },  // 左端（底面）
-    { x: 0.03, alt: 1400 },  // カトマンズ
-    { x: 0.07, alt: 1600 },
-    { x: 0.12, alt: 2860 },  // ルクラ（急上昇）
-    { x: 0.18, alt: 3200 },
-    { x: 0.23, alt: 3440 },  // ナムチェ
-    { x: 0.29, alt: 3700 },
-    { x: 0.33, alt: 3867 },  // テンボチェ
-    { x: 0.38, alt: 4100 },
-    { x: 0.42, alt: 4410 },  // ディンボチェ
-    { x: 0.47, alt: 4940 },  // ロブチェ
-    { x: 0.52, alt: 5364 },  // BC
-    { x: 0.57, alt: 5943 },  // C1
-    { x: 0.63, alt: 6400 },  // C2
-    { x: 0.69, alt: 7200 },  // C3
-    { x: 0.75, alt: 7906 },  // C4
-    { x: 0.82, alt: 8400 },
-    { x: 0.87, alt: 8749 },  // サウスサミット
-    { x: 0.92, alt: 8849 },  // 山頂
-    { x: 0.95, alt: 8600 },  // 山頂後の下り
-    { x: 1.0,  alt: 7000 },  // 右端
-  ];
-
-  function mountainX(frac) {
-    return PAD_L + frac * chartW;
-  }
-
-  function buildMountainPath() {
-    var pts = MOUNTAIN_SHAPE.map(function(p) {
-      return { x: mountainX(p.x), y: yPos(p.alt) };
-    });
-    var d = 'M ' + pts[0].x + ' ' + pts[0].y;
-    for (var i = 1; i < pts.length; i++) {
-      d += ' L ' + pts[i].x + ' ' + pts[i].y;
-    }
-    return d;
-  }
-
-  function buildMountainFillPath() {
-    var d = buildMountainPath();
-    d += ' L ' + mountainX(1.0) + ' ' + (SVG_H - PAD_B);
-    d += ' L ' + mountainX(0) + ' ' + (SVG_H - PAD_B);
-    d += ' Z';
-    return d;
-  }
-
-  // ルート上のX座標（MOUNTAIN_SHAPEの各ウェイポイントに対応）
-  // カトマンズ(0.03), ルクラ(0.12), NBC(0.23), TBC(0.33), DBC(0.42),
-  // ロブ(0.47), BC(0.52), C1(0.57), C2(0.63), C3(0.69), C4(0.75), SS(0.87), 山頂(0.92)
-  var ROUTE_X_FRACS = [0.03, 0.16, 0.26, 0.35, 0.43, 0.48, 0.53, 0.58, 0.64, 0.70, 0.76, 0.87, 0.92];
-
-  function routeX(i) {
-    return PAD_L + ROUTE_X_FRACS[i] * chartW;
-  }
-  function routeY(i) {
-    return yPos(ROUTE[i].alt);
-  }
-
-  function drawMountainSvg(currentAlt, currentWpIdx) {
-    var svg = document.getElementById('trackerMountainSvg');
-    if (!svg) return;
-
-    // 山型パス
-    var fill = document.getElementById('mountainFill');
-    var outline = document.getElementById('mountainOutline');
-    if (fill) fill.setAttribute('d', buildMountainFillPath());
-    if (outline) outline.setAttribute('d', buildMountainPath());
-
-    // デスゾーンライン
-    var dzY = yPos(8000);
-    var dzLine = document.getElementById('deathZoneLine');
-    if (dzLine) {
-      dzLine.setAttribute('x1', PAD_L);
-      dzLine.setAttribute('y1', dzY);
-      dzLine.setAttribute('x2', SVG_W - PAD_R);
-      dzLine.setAttribute('y2', dzY);
-    }
-    var dzLabel = document.getElementById('deathZoneLabel');
-    if (dzLabel) {
-      dzLabel.setAttribute('x', PAD_L + 6);
-      dzLabel.setAttribute('y', dzY - 5);
-      dzLabel.textContent = 'DEATH ZONE  8,000m';
-    }
-
-    // ルートパス構築
-    var passedD = '', aheadD = '';
-    for (var i = 0; i < ROUTE.length; i++) {
-      var rx = routeX(i), ry = routeY(i);
-      var cmd = (i === 0) ? 'M' : 'L';
-      if (currentAlt >= ROUTE[i].alt - 200 || i <= currentWpIdx) {
-        passedD += cmd + ' ' + rx + ' ' + ry + ' ';
-      } else {
-        if (!aheadD) {
-          // 通過済みの最後の点から続ける
-          var prevX = routeX(i - 1), prevY = routeY(i - 1);
-          aheadD = 'M ' + prevX + ' ' + prevY + ' ';
-        }
-        aheadD += 'L ' + rx + ' ' + ry + ' ';
-      }
-    }
-    var rPassed = document.getElementById('routePassed');
-    var rAhead = document.getElementById('routeAhead');
-    if (rPassed) rPassed.setAttribute('d', passedD || 'M0 0');
-    if (rAhead) rAhead.setAttribute('d', aheadD || 'M0 0');
-
-    // ウェイポイントグループ再構築
-    var wpGroup = document.getElementById('waypointGroup');
-    if (wpGroup) {
-      wpGroup.innerHTML = '';
-      var ns = 'http://www.w3.org/2000/svg';
-      ROUTE.forEach(function(wp, i) {
-        var wx = routeX(i), wy = routeY(i);
-        var passed = (i <= currentWpIdx);
-        var isCurrent = (i === currentWpIdx);
-
-        // ドット
-        var circle = document.createElementNS(ns, 'circle');
-        circle.setAttribute('cx', wx);
-        circle.setAttribute('cy', wy);
-        circle.setAttribute('r', isCurrent ? 8 : (passed ? 5 : 3.5));
-        circle.setAttribute('fill', isCurrent ? '#4ade80' : (passed ? '#d4a843' : 'rgba(240,237,232,0.2)'));
-        circle.setAttribute('stroke', isCurrent ? 'rgba(74,222,128,0.5)' : (passed ? 'rgba(212,168,67,0.4)' : 'none'));
-        circle.setAttribute('stroke-width', '1.5');
-        wpGroup.appendChild(circle);
-
-        // ラベル（showLabelのもののみ、かつ現在地のKTMは吹き出しで代替するので非表示）
-        if (wp.showLabel && !(isCurrent && i === 0)) {
-          // ラベルの上下位置：個別制御（重なり防止）
-          // KTM(0)=上, ルクラ(1)=下, NBC(2)=下, ロブ(3)=下, BC(4)=上, C2(5)=上, C4(6)=上, 山頂(7)=上
-          var labelAboveMap = {0: true, 1: false, 2: false, 3: false, 4: true, 5: true, 6: true, 7: true, 8: true, 9: true, 10: true, 11: false, 12: false};
-          var labelAbove = (labelAboveMap[i] !== undefined) ? labelAboveMap[i] : (i >= ROUTE.length / 2);
-          var labelY = labelAbove ? wy - 26 : wy + 34;
-          var nameColor = isCurrent ? '#4ade80' : (passed ? 'rgba(212,168,67,0.9)' : 'rgba(240,237,232,0.45)');
-          var numColor  = isCurrent ? 'rgba(74,222,128,0.9)' : (passed ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.7)');
-
-          // 垂直線
-          var vline = document.createElementNS(ns, 'line');
-          vline.setAttribute('x1', wx); vline.setAttribute('y1', wy + (labelAbove ? -6 : 6));
-          vline.setAttribute('x2', wx); vline.setAttribute('y2', labelAbove ? wy - 28 : wy + 14);
-          vline.setAttribute('stroke', 'rgba(255,255,255,0.75)'); vline.setAttribute('stroke-width', '1.2');
-          vline.setAttribute('opacity', '0.85');
-          wpGroup.appendChild(vline);
-
-          // ラベル背景（半透明の黒矩形）
-          var bgRect = document.createElementNS(ns, 'rect');
-          var bgW = wp.shortName.length * 8 + 10;
-          var bgH = 28;
-          bgRect.setAttribute('x', wx - bgW / 2);
-          bgRect.setAttribute('y', labelAbove ? labelY - 26 : labelY - 16);
-          bgRect.setAttribute('width', bgW);
-          bgRect.setAttribute('height', bgH);
-          bgRect.setAttribute('rx', '3');
-          bgRect.setAttribute('fill', 'rgba(5,5,5,0.75)');
-          wpGroup.appendChild(bgRect);
-
-          var altLabel = document.createElementNS(ns, 'text');
-          altLabel.setAttribute('x', wx);
-          altLabel.setAttribute('y', labelY);
-          altLabel.setAttribute('text-anchor', 'middle');
-          altLabel.setAttribute('font-size', '13');
-          altLabel.setAttribute('font-family', 'monospace');
-          altLabel.setAttribute('font-weight', isCurrent ? 'bold' : 'normal');
-          altLabel.setAttribute('fill', nameColor);
-          altLabel.textContent = wp.shortName;
-          wpGroup.appendChild(altLabel);
-
-          var altNum = document.createElementNS(ns, 'text');
-          altNum.setAttribute('x', wx);
-          altNum.setAttribute('y', labelY + (labelAbove ? -18 : 18));
-          altNum.setAttribute('text-anchor', 'middle');
-          altNum.setAttribute('font-size', '10');
-          altNum.setAttribute('font-family', 'monospace'); altNum.setAttribute('opacity', '0.85');
-          altNum.setAttribute('fill', numColor);
-          altNum.textContent = wp.alt.toLocaleString() + 'm';
-          wpGroup.appendChild(altNum);
-        }
-      });
-    }
-
-    // 現在地マーカー
-    var marker = document.getElementById('currentMarker');
-    var pulse = document.getElementById('markerPulse');
-    var dot = document.getElementById('markerDot');
-    var icon = document.getElementById('markerIcon');
-    var bubbleRect = document.getElementById('bubbleRect');
-    var bubbleText = document.getElementById('bubbleText');
-
-    var mx = routeX(currentWpIdx);
-    var my = routeY(currentWpIdx);
-
-    if (marker) {
-      marker.setAttribute('visibility', 'visible');
-      marker.setAttribute('transform', 'translate(' + mx + ',' + my + ')');
-    }
-    if (pulse) { pulse.setAttribute('cx', 0); pulse.setAttribute('cy', 0); }
-    if (dot) { dot.setAttribute('cx', 0); dot.setAttribute('cy', 0); }
-    if (icon) { icon.setAttribute('x', 0); icon.setAttribute('y', 0); }
-
-    // 吹き出しテキスト
-    var altStr = currentAlt > 0 ? Math.round(currentAlt).toLocaleString() + 'm' : ROUTE[currentWpIdx].alt.toLocaleString() + 'm';
-    var line1 = 'NOW！';
-    var line2 = altStr;
-    var maxLen = Math.max(line1.length, line2.length);
-    var bw = maxLen * 8 + 20;
-    var bh = 34;
-    var bx = -bw / 2;
-    var by = -68;
-    // 山頂到達時はNOW吹き出しは上、ワイポイントラベルは下
-    if (currentWpIdx >= 11) { bx = -bw / 2; by = -68; }
-    // 下山中はNOW吹き出しをマーカーの上に表示（左側にオフセットしてラベルと被らないように）
-    if (status === 'descending') { bx = -bw - 8; by = -68; }
-    // 左端はみ出し防止（descending時は適用しない）
-    if (status !== 'descending') {
-      if (mx + bx < PAD_L) bx = PAD_L - mx;
-      if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
-    } else {
-      if (mx + bx + bw > SVG_W - PAD_R) bx = SVG_W - PAD_R - mx - bw;
-    }
-
-    if (bubbleRect) {
-      bubbleRect.setAttribute('x', bx);
-      bubbleRect.setAttribute('y', by);
-      bubbleRect.setAttribute('width', bw);
-      bubbleRect.setAttribute('height', bh);
-    }
-    if (bubbleText) {
-      // 改行表示：既存の<text>を使わず、tspanで二行にする
-      while (bubbleText.firstChild) bubbleText.removeChild(bubbleText.firstChild);
-      bubbleText.setAttribute('x', bx + bw / 2);
-      bubbleText.setAttribute('y', by + 14);
-      bubbleText.setAttribute('font-size', '11');
-      var tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-      tspan1.setAttribute('x', bx + bw / 2);
-      tspan1.setAttribute('dy', '0');
-      tspan1.textContent = line1;
-      var tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-      tspan2.setAttribute('x', bx + bw / 2);
-      tspan2.setAttribute('dy', '14');
-      tspan2.textContent = ' ' + line2;
-      bubbleText.appendChild(tspan1);
-      bubbleText.appendChild(tspan2);
-    }
-
-    // 山頂フラッグ
-    var summitFlag = document.getElementById('summitFlag');
-    if (summitFlag) {
-      var sx = routeX(12), sy = routeY(12);
-      summitFlag.setAttribute('transform', 'translate(' + sx + ',' + (sy + 20) + ')');
-      var flagText = summitFlag.querySelector('text');
-      if (flagText) { flagText.setAttribute('x', 0); flagText.setAttribute('y', 0); }
-    }
-
-    // 標高グリッドライン（左輺）
-    var existingGrid = svg.querySelectorAll('.alt-grid');
-    existingGrid.forEach(function(el) { el.remove(); });
-    var ns2 = 'http://www.w3.org/2000/svg';
-    [3000, 4000, 5000, 6000, 7000, 8000, 8849].forEach(function(a) {
-      var gy = yPos(a);
-      var line = document.createElementNS(ns2, 'line');
-      line.setAttribute('class', 'alt-grid');
-      line.setAttribute('x1', PAD_L);
-      line.setAttribute('y1', gy);
-      line.setAttribute('x2', SVG_W - PAD_R);
-      line.setAttribute('y2', gy);
-      line.setAttribute('stroke', 'rgba(212,168,67,0.05)');
-      line.setAttribute('stroke-width', '1');
-      svg.insertBefore(line, svg.firstChild);
-
-      var label = document.createElementNS(ns2, 'text');
-      label.setAttribute('class', 'alt-grid');
-      label.setAttribute('x', PAD_L - 4);
-      label.setAttribute('y', gy + 3);
-      label.setAttribute('text-anchor', 'end');
-      label.setAttribute('font-size', '10');
-      label.setAttribute('font-family', 'monospace');
-      label.setAttribute('fill', 'rgba(240,237,232,0.35)');
-      if (a >= 8849) { label.remove(); return; }
-      label.textContent = (a / 1000).toFixed(0) + 'k';
-      svg.insertBefore(label, svg.firstChild);
-    });
-  }
-
-  function updateTracker(data) {
-    var alt = data.altitude || 0;
-    var pct = data.progress_pct || 0;
-    var rawStatus = (data.status || 'PRE-DEPARTURE');
-    var status = rawStatus.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
-    // ROUTEにカトマンズ(idx=0)を追加したため、fetch_gps.pyのwaypoint_idxに+1する
-    // PRE-DEPARTUREの場合は必ずカトマンズ(0)を指す
-    var rawWpIdx = data.current_waypoint_idx || 0;
-    var wpIdx = (status === 'pre-departure') ? 0 : (rawWpIdx + 1);
-    var wpName = data.current_waypoint_name || '--';
-    var updatedAt = data.updated_at_jst || '--';
-    var summit = 8849;
-    var remain = alt > 0 ? Math.max(0, summit - Math.round(alt)) : summit;
-
-    // 標高表示
-    var altEl = document.getElementById('trackerAlt');
-    // PRE-DEPARTUREはカトマンズの標高を表示
-    var displayAlt = (status === 'pre-departure') ? 1400 : (alt > 0 ? Math.round(alt) : 0);
-    if (altEl) altEl.textContent = displayAlt > 0 ? displayAlt.toLocaleString() : '--';
-
-    // 山頂まであと（下山中はカトマンズまでの標高差を表示）
-    var remainEl = document.getElementById('trackerRemain');
-    var remainLabelEl = document.getElementById('trackerRemainLabel');
-    var destEl = document.getElementById('statusDestination');
-    var iconEl = document.getElementById('markerIcon');
-    if (status === 'descending') {
-      var descRemain = alt > 0 ? Math.max(0, Math.round(alt) - 1400) : 0;
-      if (remainEl) remainEl.textContent = descRemain.toLocaleString();
-      if (remainLabelEl) remainLabelEl.textContent = 'KTMまであと';
-      if (destEl) destEl.textContent = 'KTM 帰還中';
-      if (iconEl) { iconEl.textContent = '🚶'; iconEl.setAttribute('transform', 'translate(18,0) scale(-1,1)'); iconEl.setAttribute('x', '0'); }
-    } else {
-      if (remainEl) remainEl.textContent = remain.toLocaleString();
-      if (remainLabelEl) remainLabelEl.textContent = '山頂まであと';
-      if (destEl) destEl.textContent = '8,848.86 m';
-      if (iconEl) { iconEl.textContent = '🚶'; iconEl.setAttribute('transform', 'scale(1,1)'); iconEl.setAttribute('x', '0'); }
-    }
-
-    // 進捗
-    var pctEl = document.getElementById('trackerPct');
-    var pctUnitEl = document.querySelector('#trackerPct + .tracker-stat-unit');
-    if (pctEl) {
-      if (status === 'pre-departure') {
-        pctEl.textContent = '出発前';
-        pctEl.style.fontSize = '1rem';
-        if (pctUnitEl) pctUnitEl.style.display = 'none';
-      } else {
-        pctEl.textContent = pct;
-        pctEl.style.fontSize = '';
-        if (pctUnitEl) pctUnitEl.style.display = '';
-      }
-    }
-
-    // 場所名・説明
-    var wpEl = document.getElementById('trackerWaypoint');
-    var descEl = document.getElementById('trackerLocationDesc');
-    var statusDescMap = {
-      'pre-departure': { name: 'カトマンズ滞在中', desc: 'ルクラへのフライトを待機中' },
-      'trekking':      { name: wpName + 'へトレッキング中', desc: 'エベレスト登山ルートを歩いています' },
-      'ascending':     { name: '山頂アタック中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'mに到達' },
-      'death-zone':    { name: 'デスゾーンを突進中', desc: '標高' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm — 人間の極限領域' },
-      'summit':        { name: '山頂到達！🏆', desc: 'エベレスト山頂 8,848.86m 到達' },
-      'descending':    { name: '登頂成功・下山中', desc: 'エベレスト登頂後、現在下山中です' },
-    };
-    var sd = statusDescMap[status] || statusDescMap['pre-departure'];
-    if (wpEl) wpEl.textContent = sd.name;
-    if (descEl) descEl.textContent = sd.desc;
-
-    // 最終更新
-    var updEl = document.getElementById('trackerUpdated');
-    if (updEl) updEl.textContent = '最終更新: ' + updatedAt + ' (Garmin inReach Mini 2)';
-
-    // 進捗バー（カトマンズ 1,400m 基準で対全体比率を計算）
-    var fillEl = document.getElementById('trackerProgressFill');
-    var BASE_ALT = 1400, SUMMIT_ALT = 8849;
-    var fillPct = status === 'pre-departure' ? 0
-      : Math.min(100, Math.max(0, Math.round((alt - BASE_ALT) / (SUMMIT_ALT - BASE_ALT) * 100)));
-    if (fillEl) fillEl.style.width = fillPct + '%';
-    var curLabelEl = document.getElementById('trackerCurrentLabel');
-    if (curLabelEl) curLabelEl.textContent = '現在地 ' + (alt > 0 ? Math.round(alt).toLocaleString() : '--') + 'm';
-
-    // ステータスバッジ
-    var badge = document.getElementById('trackerStatusBadge');
-    if (badge) {
-      var statusMap = {
-        'pre-departure': { text: 'PRE-DEPARTURE 出発前', cls: 'pre-departure' },
-        'trekking':      { text: 'TREKKING トレッキング中', cls: 'trekking' },
-        'ascending':     { text: 'ASCENDING 登頂中', cls: 'ascending' },
-        'death-zone':    { text: 'DEATH ZONE 死の地帯', cls: 'death-zone' },
-        'summit':        { text: 'SUMMIT 山頂到達！', cls: 'summit' },
-        'descending':    { text: 'DESCENDING 下山中', cls: 'descending' },
-      };
-      var s = statusMap[status] || statusMap['pre-departure'];
-      badge.textContent = s.text;
-      badge.className = 'tracker-status-badge ' + s.cls;
-    }
-
-    // ステータスバー自動更新
-    var dayEl = document.getElementById('statusCurrentDay');
-    if (dayEl && data.day_count) {
-      dayEl.textContent = data.day_count + '日目';
-    }
-    var altEl2 = document.getElementById('statusCurrentAlt');
-    if (altEl2 && data.current_location_label) {
-      altEl2.textContent = data.current_location_label;
-    }
-
-    // SVGマウンテン描画
-    drawMountainSvg(displayAlt, wpIdx);
-  }
-
-  function loadGPS() {
-    fetch(GPS_JSON_URL + '?t=' + Date.now())
-      .then(function(r) { return r.json(); })
-      .then(function(data) { updateTracker(data); })
-      .catch(function() {
-        updateTracker({ altitude: 0, progress_pct: 0, status: 'PRE-DEPARTURE', current_waypoint_name: '出発前', updated_at_jst: '--' });
-      });
-  }
-
-  document.addEventListener('DOMContentLoaded', loadGPS);
-  setInterval(loadGPS, 5 * 60 * 1000);
-})();
-
-// スクロールアニメーション
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
+// GPS TRACKER section removed
 // ===== LINE CAROUSEL =====
 (function() {
   const track = document.getElementById('lineCarouselTrack');
