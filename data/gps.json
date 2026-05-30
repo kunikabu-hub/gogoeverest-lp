@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-29T23:48:54.970976+00:00",
-  "updated_at_jst": "2026/05/29 23:48 JST",
+  "updated_at": "2026-05-30T03:31:24.028052+00:00",
+  "updated_at_jst": "2026/05/30 03:31 JST",
   "garmin_time": "5/18/2026 2:03:00 PM",
   "lat": 27.969786,
   "lng": 86.918763,
@@ -13,7 +13,7 @@
   "current_waypoint_name": "キャンプ3（C3）",
   "progress_pct": 74,
   "status": "ASCENDING",
-  "day_count": 56,
+  "day_count": 57,
   "current_location_label": "キャンプ3（C3）　7,303m",
   "route": [
     {
